@@ -8,10 +8,10 @@ const ParticleCanvas = () => {
     const targetRef = useRef([]);
 
     // Configuration
-    const PARTICLE_COUNT = 2000; // Adjusted
-    const PARTICLE_SIZE = 3.0;   // Adjusted
+    const PARTICLE_COUNT = 5000; // Adjusted
+    const PARTICLE_SIZE = 1;   // Adjusted
     const BASE_SPEED = 0.03;
-    const THICKNESS = 4.0;
+    const THICKNESS = 1.0;
     // Noise Configuration
     const START_NOISE = 1.5;
     const END_NOISE = 0.2;
@@ -199,7 +199,7 @@ const ParticleCanvas = () => {
 
             // Glow & Blending Settings
             ctx.globalCompositeOperation = 'screen'; // Makes overlapping particles brighter
-            ctx.fillStyle = '#FACC15'; // Brand Gold
+            ctx.fillStyle = '#E9A319'; // Brand Gold
 
             const particles = particlesRef.current;
             const targets = targetRef.current;

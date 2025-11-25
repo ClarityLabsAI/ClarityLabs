@@ -36,7 +36,7 @@ export const VisualWave = () => (
                 {/* "You" Line (Exponential) */}
                 <path 
                     d="M 0 300 Q 200 300 350 50" 
-                    fill="none" stroke="#FACC15" strokeWidth="4"
+                    fill="none" stroke="#E9A319" strokeWidth="4"
                 />
             </svg>
 
@@ -78,13 +78,13 @@ export const VisualWeapon = () => {
                      "M 280 100 C 280 140, 200 120, 200 180"
                  ].map((d, i) => (
                      <path 
-                        key={i} d={d} fill="none" stroke="#FACC15" strokeWidth="1.5" strokeOpacity="0.5"
+                        key={i} d={d} fill="none" stroke="#E9A319" strokeWidth="1.5" strokeOpacity="0.5"
                      />
                  ))}
              </svg>
 
             {/* Master Data Core */}
-            <div className="w-40 h-16 border-2 border-brand-gold bg-brand-gold/20 rounded-lg flex flex-col items-center justify-center z-20 backdrop-blur-md mt-16 shadow-[0_0_15px_#FACC15]">
+            <div className="w-40 h-16 border-2 border-brand-gold bg-brand-gold/20 rounded-lg flex flex-col items-center justify-center z-20 backdrop-blur-md mt-16 shadow-[0_0_15px_#E9A319]">
                 <div className="text-brand-gold font-bold tracking-widest text-xs">MASTER DATA</div>
                 <div className="text-[8px] text-brand-gold/70">Structured Knowledge</div>
             </div>
@@ -99,7 +99,7 @@ export const VisualNetwork = () => (
         <div className="w-full h-full flex items-center justify-center relative">
             {/* Network Lines */}
              <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                <g stroke="#FACC15" strokeWidth="1" strokeOpacity="0.3">
+                <g stroke="#E9A319" strokeWidth="1" strokeOpacity="0.3">
                     <line x1="200" y1="150" x2="100" y2="100" />
                     <line x1="200" y1="150" x2="300" y2="100" />
                     <line x1="200" y1="150" x2="100" y2="200" />
@@ -109,7 +109,7 @@ export const VisualNetwork = () => (
              </svg>
              
              {/* Central Brain Node */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 border-brand-gold bg-brand-gold/10 flex items-center justify-center z-20 shadow-[0_0_15px_#FACC15]">
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 border-brand-gold bg-brand-gold/10 flex items-center justify-center z-20 shadow-[0_0_15px_#E9A319]">
                 <div className="w-8 h-8 bg-brand-gold rounded-full opacity-80"></div>
              </div>
 
@@ -164,7 +164,7 @@ export const VisualAtlas = () => (
                 
                 {/* Core */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-4 h-4 bg-brand-gold rounded-full shadow-[0_0_20px_#FACC15]"></div>
+                    <div className="w-4 h-4 bg-brand-gold rounded-full shadow-[0_0_20px_#E9A319]"></div>
                 </div>
 
                 {/* Floating Data Points */}

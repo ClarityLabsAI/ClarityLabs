@@ -126,7 +126,7 @@ const VisualFilings = () => {
 
                         <motion.path
 
-                            key={i} d={d} fill="none" stroke="#FACC15" strokeWidth="1.5"
+                            key={i} d={d} fill="none" stroke="#E9A319" strokeWidth="1.5"
 
                             initial={{ pathLength: 0 }}
 
@@ -176,7 +176,7 @@ const VisualFilings = () => {
 
                         initial={{ opacity: 0, scale: 0.8 }}
 
-                        whileInView={{ opacity: 1, scale: 1, borderColor: "#FACC15", backgroundColor: "#FEFCE8" }}
+                        whileInView={{ opacity: 1, scale: 1, borderColor: "#E9A319", backgroundColor: "#FEFCE8" }}
 
                         transition={{ delay: 2.2 + i * 0.1 }}
 
