@@ -6,13 +6,12 @@ import ParticleCanvas from '../components/ParticleCanvas';
 const LandingLayout = ({ title, subtitle, children }) => {
   return (
     <div className="relative bg-brand-black min-h-screen text-white selection:bg-brand-gold selection:text-black">
-      {/* Background Particles - Fixed so they stay while scrolling */}
-      <div className="fixed inset-0 z-0">
-        <ParticleCanvas />
-      </div>
-
       {/* Hero Section */}
       <div className="relative z-10 h-screen w-full overflow-hidden">
+        {/* Background Particles - Moved here to scroll with the title */}
+        <div className="absolute inset-0 z-0">
+          <ParticleCanvas />
+        </div>
 
         {/* Centered Title - Absolutely Positioned for perfect center */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
