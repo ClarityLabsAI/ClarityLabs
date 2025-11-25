@@ -20,49 +20,41 @@ const LandingA = () => {
         <p className="font-bold text-white">
           The pressure is already rising.
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-gray-400">
-          <li>Competitors are adopting faster than ever.</li>
-          <li>Legacy workflows are becoming obsolete liabilities.</li>
-          <li>Adapt quickly or risk being left behind in the pre-AI era.</li>
+        <ul className="space-y-3 mt-2">
+            <li className="flex items-center gap-3">
+                <span className="w-2 h-2 bg-brand-gold rounded-full shrink-0"></span>
+                <span className="text-gray-400">Competitors are adopting faster than ever.</span>
+            </li>
+            <li className="flex items-center gap-3">
+                <span className="w-2 h-2 bg-brand-gold rounded-full shrink-0"></span>
+                <span className="text-gray-400">Legacy workflows are becoming obsolete liabilities.</span>
+            </li>
+            <li className="flex items-center gap-3">
+                <span className="w-2 h-2 bg-brand-gold rounded-full shrink-0"></span>
+                <span className="text-gray-400">Adapt quickly or risk being left behind in the pre-AI era.</span>
+            </li>
         </ul>
       </Section>
 
-      {/* Point 2: Knowledge is a Weapon */}
-      <Section
-        title="Your Knowledge is Your Weapon"
-        align="right"
-        visual={<VisualWeapon />}
-      >
-        <p>
-          Your company's historical data and proprietary knowledge are a treasure trove—if you can access it.
-        </p>
-        <p>
-          Whatever you structure right now starts creating a permanent record that no competitor can catch up to. This is the fuel for the future.
-        </p>
-        <div className="p-4 bg-brand-gold/10 border border-brand-gold/30 rounded-lg mt-4">
-          <span className="text-brand-gold block mb-2 font-mono text-sm">THE MOAT STRATEGY</span>
-          <p className="text-sm">
-            In an age where AI models are commodities, your unique, structured enterprise data is the only defensible moat.
-          </p>
-        </div>
-      </Section>
-
-      {/* Point 3: Enable AI */}
-      <Section
-        title="Play With AI, Not Against It"
-        align="left"
-        visual={<VisualNetwork />}
-      >
-        <p>
-          Enable AI on your integrated company knowledge. Don't just automate tasks; enable a systemic evolution of how your business operates.
-        </p>
-        <p>
-          When your data is structured, AI becomes a partner that understands your context, history, and goals.
-        </p>
-      </Section>
-
-      {/* Use Cases Section */}
-      <UseCases />
+            {/* Point 2: Knowledge is a Weapon (Merged) */}
+            <Section 
+              title="Your Knowledge is Your Weapon" 
+              align="right"
+              visual={<VisualWeapon />}
+            >
+              <p>
+                Your company's historical data and proprietary knowledge are a treasure trove—if you can access it. Whatever you structure right now starts creating a permanent record that no competitor can catch up to.
+              </p>
+              
+              <div className="pt-6">
+                  <h4 className="text-xl text-brand-gold-light font-bold font-sans mb-2">Play With AI, Not Against It</h4>
+                  <p>
+                    Enable AI on your integrated company knowledge. Don't just automate tasks; enable a systemic evolution of how your business operates. When your data is structured, AI becomes a partner that understands your context, history, and goals.
+                  </p>
+              </div>
+            </Section>
+      
+            {/* Use Cases Section */}      <UseCases />
 
     </LandingLayout>
   );

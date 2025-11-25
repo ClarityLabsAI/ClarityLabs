@@ -323,8 +323,8 @@ const UseCases = () => {
     return (
         <section className="bg-black">
             <div className="pt-20 pb-12 text-center">
-                <h2 className="text-5xl md:text-6xl font-sans font-bold text-white mb-4">Proven Results</h2>
-                <p className="text-gray-400 max-w-2xl mx-auto">Real-world impact across industries.</p>
+                <h2 className="text-4xl md:text-5xl font-sans font-bold text-white mb-4">We Deliver an Impact in Weeks</h2>
+                <p className="text-gray-400 max-w-3xl mx-auto">Real-world impact across industries.</p>
             </div>
 
             <UseCasePanel

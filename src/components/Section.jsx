@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Section = ({ title, children, visual, align = 'left' }) => {
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-24 relative z-10 border-b border-white/10 bg-black">
+    <div className="flex items-center justify-center px-6 py-16 relative z-10 border-b border-white/10 bg-black">
       <div className={`max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${align === 'right' ? 'md:grid-flow-dense' : ''}`}>
         
         {/* Text Content */}
