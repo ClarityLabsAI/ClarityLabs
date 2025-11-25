@@ -1,6 +1,7 @@
 import React from 'react';
 // motion imported but unused for animations now, kept if needed for basic fade-ins later
 import { motion } from 'framer-motion';
+import { FileText, Mail, Database, Mic, FileSpreadsheet, AlertCircle } from 'lucide-react';
 
 // --- Shared Container (No Window Chrome) ---
 const SimpleContainer = ({ children }) => (
@@ -134,25 +135,272 @@ export const VisualNetwork = () => (
 
 // --- Landing B Visuals (Static) ---
 
-export const VisualBurden = () => (
+export const VisualBurden = ({ step = 1 }) => {
+    // Configuration for the 7 windows
+    const windows = [
+        { 
+            id: "pdf", color: "border-gray-600 bg-gray-800", 
+            icon: <FileText size={28} />, 
+            label: "PDF",
+            content: (
+                <>
+                    <div className="h-6 bg-gray-700 border-b border-gray-600 flex items-center px-2"></div>
+                    <div className="flex flex-col items-center justify-center h-full pb-6 text-gray-400">
+                        <FileText size={28} />
+                        <span className="text-[10px] mt-2">scan_001.pdf</span>
+                    </div>
+                </>
+            )
+        },
+        { 
+            id: "proc", color: "border-gray-600 bg-gray-800", 
+            icon: <FileText size={28} />, 
+            label: "DOC",
+            content: (
+                <>
+                    <div className="h-6 bg-gray-700 border-b border-gray-600 flex items-center px-2 justify-between">
+                        <span className="text-[9px] text-gray-500">SOP_v1.txt</span>
+                    </div>
+                    <div className="p-3 space-y-2 opacity-50">
+                        {[...Array(6)].map((_,i) => <div key={i} className="w-full h-1 bg-gray-600 rounded"></div>)}
+                    </div>
+                </>
+            )
+        },
+        { 
+            id: "db", color: "border-gray-700 bg-gray-900", 
+            icon: <Database size={24} />, 
+            label: "DB",
+            content: (
+                <>
+                    <div className="h-6 bg-gray-800 border-b border-gray-700 flex items-center px-2 gap-1">
+                        <div className="w-2 h-2 rounded-full bg-red-500/50"></div>
+                        <div className="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+                    </div>
+                    <div className="flex flex-col items-center justify-center h-full pb-6 text-gray-500">
+                        <Database size={24} />
+                        <span className="text-[10px] mt-1 font-mono">LEGACY_DB</span>
+                    </div>
+                </>
+            )
+        },
+        { 
+            id: "mail", color: "border-gray-600 bg-gray-800", 
+            icon: <Mail size={24} />, 
+            label: "MAIL",
+            content: (
+                <>
+                    <div className="h-6 bg-gray-700 border-b border-gray-600 flex items-center px-2 gap-1">
+                        <div className="w-2 h-2 rounded-full bg-gray-500/50"></div>
+                    </div>
+                    <div className="p-3 space-y-2">
+                        <div className="flex items-center gap-2 text-gray-400 border-b border-gray-700 pb-2">
+                            <Mail size={16} />
+                            <span className="text-[10px]">Re: Invoice #992</span>
+                        </div>
+                        <div className="space-y-1">
+                             <div className="w-full h-1 bg-gray-600 rounded"></div>
+                             <div className="w-2/3 h-1 bg-gray-600 rounded"></div>
+                        </div>
+                    </div>
+                    <div className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg">!</div>
+                </>
+            )
+        },
+        { 
+            id: "word", color: "border-gray-600 bg-gray-800", 
+            icon: <FileText size={24} />, 
+            label: "DOC",
+            content: (
+                <>
+                     <div className="h-6 bg-gray-700 border-b border-gray-700 flex items-center px-2">
+                        <span className="text-[9px] text-gray-400">spec_2019_final.doc</span>
+                     </div>
+                     <div className="p-4 flex items-center justify-center h-full text-gray-600">
+                        <FileText size={32} />
+                     </div>
+                     <div className="absolute bottom-2 right-2 bg-yellow-500/20 text-yellow-500 text-[9px] px-1 rounded border border-yellow-500/30">DEPRECATED</div>
+                </>
+            )
+        },
+        { 
+            id: "xls", color: "border-gray-700 bg-gray-900", 
+            icon: <FileSpreadsheet size={24} />, 
+            label: "XLS",
+            content: (
+                <>
+                     <div className="h-6 bg-gray-800 border-b border-gray-700 flex items-center px-2 justify-between">
+                        <span className="text-[9px] text-gray-400">financials_v2.xlsx</span>
+                     </div>
+                     <div className="flex-1 p-2 grid grid-cols-4 gap-1 content-start">
+                        {[...Array(16)].map((_, i) => (
+                            <div key={i} className="h-4 bg-gray-800 border border-gray-700 rounded"></div>
+                        ))}
+                     </div>
+                     <div className="absolute bottom-2 right-2 text-red-400">
+                        <AlertCircle size={16} />
+                     </div>
+                </>
+            )
+        },
+        { 
+            id: "audio", color: "border-gray-700 bg-gray-900", 
+            icon: <Mic size={24} />, 
+            label: "AUDIO",
+            content: (
+                <>
+                    <div className="h-6 bg-gray-800 border-b border-gray-700 flex items-center px-2"></div>
+                    <div className="flex items-center justify-center h-full pb-6 gap-2 text-gray-400">
+                        <Mic size={16} />
+                        <div className="w-12 h-4 flex items-center gap-0.5">
+                            <div className="w-1 h-2 bg-gray-600"></div>
+                            <div className="w-1 h-4 bg-gray-500"></div>
+                            <div className="w-1 h-3 bg-gray-600"></div>
+                            <div className="w-1 h-1 bg-gray-700"></div>
+                        </div>
+                    </div>
+                </>
+            )
+        },
+    ];
+
+    // Step 1: Chaotic Positions (Absolute)
+    const chaoticPos = [
+        { top: "1rem", left: "1.5rem", width: "8rem", height: "10rem", zIndex: 10 }, // PDF
+        { top: "1.5rem", right: "2rem", width: "10rem", height: "12rem", zIndex: 10 }, // Process
+        { bottom: "2rem", left: "3rem", width: "9rem", height: "7rem", zIndex: 20 }, // DB
+        { top: "3rem", right: "6rem", width: "11rem", height: "8rem", zIndex: 30 }, // Email
+        { top: "5rem", left: "8rem", width: "10rem", height: "10rem", zIndex: 30 }, // Word
+        { bottom: "1rem", left: "50%", x: "-50%", width: "14rem", height: "10rem", zIndex: 40 }, // Excel
+        { bottom: "2.5rem", right: "2.5rem", width: "9rem", height: "6rem", zIndex: 50 }, // Audio
+    ];
+
+    // Step 2: Organized Grid Positions
+    // Distribute 7 items across 100% width. 
+    // Margin left/right: 5%. Spacing: 90% / 7 = ~12.8% per slot.
+    const getOrganizedStyle = (i) => {
+        const slotWidth = 12.8; 
+        const leftPos = 5 + (i * slotWidth) + (slotWidth / 2); // Center of slot
+        return {
+            top: "auto",
+            bottom: "10px",
+            left: `${leftPos}%`,
+            x: "-50%", // Center on the left position
+            width: "3.5rem", // Fixed small size
+            height: "4.5rem",
+            zIndex: 10,
+            right: "auto" // Clear any right props
+        };
+    };
+
+    return (
     <SimpleContainer>
-        <div className="w-full h-full flex items-center justify-center gap-6 p-8">
-            {/* Silos */}
-            {['ERP', 'PDF', 'MAIL'].map((label, i) => (
-                <div 
-                    key={i}
-                    className="w-20 h-32 border border-white/20 bg-white/5 rounded flex flex-col items-center justify-center relative"
-                >
-                    <span className="text-gray-500 font-mono text-sm mb-2">{label}</span>
-                    {/* Warning Icon */}
-                    <div className="w-4 h-4 rounded-full bg-red-500/50"></div>
-                    {/* Disconnect Icons */}
-                    <div className="absolute -right-4 top-1/2 text-red-500 text-xs">x</div>
+        <div className="w-full h-full relative overflow-hidden p-4 bg-gray-900/50 transition-all duration-1000">
+            
+            {/* --- CONNECTIONS (Step 2 & 3) --- */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
+                {/* Step 2: Yellow lines from Bottom Grid to Master Data */}
+                {step >= 2 && windows.map((_, i) => {
+                    const slotWidth = 12.8; 
+                    const leftPos = 5 + (i * slotWidth) + (slotWidth / 2); 
+                    
+                    const startX = leftPos;
+                    const startY = 88; // Just above the bottom row
+                    const endX = 50;
+                    const endY = 56; // Bottom of Master Data
+
+                    return (
+                        <motion.path 
+                            key={`yellow-${i}`}
+                            d={`M ${startX} ${startY} C ${startX} ${startY-15}, ${endX} ${endY+15}, ${endX} ${endY}`} 
+                            fill="none" stroke="#FACC15" strokeWidth="0.5" strokeOpacity="0.6"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 0.8, delay: 0.5 + i * 0.05 }}
+                        />
+                    );
+                })}
+
+                {/* Step 3: Gray lines from Master Data to Top Use Cases */}
+                {step >= 3 && [20, 40, 60, 80].map((x, i) => (
+                    <motion.path 
+                        key={`gray-${i}`}
+                        d={`M 50 44 C 50 35, ${x} 35, ${x} 15`} // 44 is top of master data
+                        fill="none" stroke="#E5E7EB" strokeWidth="0.5" strokeOpacity="0.4"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 0.8, delay: 0.2 + i * 0.1 }}
+                    />
+                ))}
+            </svg>
+
+
+            {/* --- MASTER DATA NODE (Step 2+) --- */}
+            <motion.div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={step >= 2 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+            >
+                <div className="w-40 h-12 border-2 border-brand-gold bg-brand-gold/20 rounded flex flex-col items-center justify-center backdrop-blur-md shadow-[0_0_15px_#FACC15]">
+                    <span className="text-brand-gold font-bold text-[10px] tracking-widest">STRUCTURED KNOWLEDGE</span>
                 </div>
-            ))}
+            </motion.div>
+
+
+            {/* --- USE CASES (Step 3+) --- */}
+            <div className="absolute top-8 left-0 right-0 flex justify-center gap-4 z-20 w-full px-8 pointer-events-none">
+                {/* Distribute these evenly to match the gray lines targets (20%, 40%, 60%, 80%) */}
+                {["Compliance", "Support", "Verifier", "..."].map((label, i) => (
+                    <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={step >= 3 ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                        transition={{ duration: 0.5, delay: 1 + i * 0.1 }}
+                        className="absolute top-0 bg-gray-800 border border-gray-600 px-3 py-2 rounded text-gray-300 text-[10px] font-mono shadow-lg -translate-x-1/2"
+                        style={{ left: `${20 + i * 20}%` }}
+                    >
+                        {label}
+                    </motion.div>
+                ))}
+            </div>
+
+
+            {/* --- WINDOWS (Morphing) --- */}
+            {windows.map((win, i) => {
+                // Determine current style based on step
+                const currentStyle = step >= 2 ? getOrganizedStyle(i) : chaoticPos[i];
+                
+                return (
+                    <motion.div 
+                        key={i}
+                        className={`absolute bg-gray-800 border rounded shadow-xl z-30 flex flex-col overflow-hidden ${win.color}`}
+                        initial={chaoticPos[i]}
+                        animate={currentStyle}
+                        transition={{ duration: 0.8, ease: "easeInOut" }}
+                    >
+                        {/* Step 1: Rich Content */}
+                        <div className={`absolute inset-0 w-full h-full transition-opacity duration-500 ${step >= 2 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                            {win.content}
+                        </div>
+
+                        {/* Step 2: Simplified Icon + Label */}
+                        <div className={`absolute inset-0 w-full h-full flex flex-col items-center justify-center transition-opacity duration-500 ${step >= 2 ? 'opacity-100' : 'opacity-0'}`}>
+                            <div className="scale-75 origin-center">
+                                {win.icon}
+                            </div>
+                            <span className="text-[10px] mt-1 font-mono text-gray-400">
+                                {win.label}
+                            </span>
+                        </div>
+                    </motion.div>
+                );
+            })}
+
         </div>
     </SimpleContainer>
-);
+    );
+};
 
 export const VisualAtlas = () => (
     <SimpleContainer>
