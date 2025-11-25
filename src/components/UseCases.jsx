@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-
-const GOLD = "#FFBF00";
+import { BRAND_GOLD as GOLD } from '../constants/theme';
 
 const UseCasePanel = ({ title, children, visual, align = 'left', headerContent = null }) => {
     return (

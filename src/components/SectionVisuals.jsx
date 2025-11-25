@@ -2,8 +2,7 @@ import React from 'react';
 // motion imported but unused for animations now, kept if needed for basic fade-ins later
 import { motion } from 'framer-motion';
 import { AlertCircle, Database, FileSpreadsheet, FileText, Mail, Mic } from 'lucide-react';
-
-const GOLD = "#FFBF00";
+import { BRAND_GOLD as GOLD } from '../constants/theme';
 
 // --- Shared Container (No Window Chrome) ---
 const SimpleContainer = ({ children, transparent = false }) => (
@@ -318,18 +317,17 @@ export const VisualBurden = ({ step = 1, transparent = false }) => {
                         );
                     })}
 
-                    {/* Step 3: Gray lines from Master Data to Top Use Cases */}
-                    {step >= 3 && [20, 40, 60, 80].map((x, i) => (
-                        <motion.path
-                            key={`gray-${i}`}
-                            d={`M ${x} 30 L ${x} 15`}
-                            fill="none" stroke="#FFBF00" strokeWidth="0.5" strokeOpacity="0.4"
-                            initial={{ pathLength: 0 }}
-                            animate={{ pathLength: 1 }}
-                            transition={{ duration: 0.8, delay: 0.2 + i * 0.1 }}
-                        />
-                    ))}
-                </svg>
+                                    {/* Step 3: Gray lines from Master Data to Top Use Cases */}
+                                    {step >= 3 && [20, 40, 60, 80].map((x, i) => (
+                                        <motion.path
+                                            key={`gray-${i}`}
+                                            d={`M ${x} 30 L ${x} 15`}
+                                            fill="none" stroke={GOLD} strokeWidth="0.5" strokeOpacity="0.4"
+                                            initial={{ pathLength: 0 }}
+                                            animate={{ pathLength: 1 }}
+                                            transition={{ duration: 0.8, delay: 0.2 + i * 0.1 }}
+                                        />
+                                    ))}                </svg>
 
 
                 {/* --- MASTER DATA NODE (Step 2+) --- */}

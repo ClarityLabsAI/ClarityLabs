@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { BRAND_GOLD as GOLD } from '../constants/theme';
 
 const ParticleCanvas = () => {
     const canvasRef = useRef(null);
@@ -8,8 +9,8 @@ const ParticleCanvas = () => {
     const targetRef = useRef([]);
 
     // Configuration
-    const PARTICLE_COUNT = 5000; // Adjusted
-    const PARTICLE_SIZE = 1;   // Adjusted
+    const PARTICLE_COUNT = 4000;
+    const PARTICLE_SIZE = 1;
     const BASE_SPEED = 0.03;
     const THICKNESS = 1.0;
     // Noise Configuration
@@ -217,7 +218,7 @@ const ParticleCanvas = () => {
             ctx.fillRect(0, 0, w, h);
 
             ctx.globalCompositeOperation = 'screen';
-            ctx.fillStyle = '#FFBF00';
+            ctx.fillStyle = GOLD;
 
             const particles = particlesRef.current;
             const targets = targetRef.current;
