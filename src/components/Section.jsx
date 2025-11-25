@@ -14,7 +14,7 @@ const Section = ({ title, children, visual, align = 'left' }) => {
                whileInView={{ opacity: 1, x: 0 }}
                transition={{ duration: 0.8, ease: "easeOut" }}
                viewport={{ once: true, margin: "-20%" }}
-               className="text-3xl md:text-4xl font-mono font-bold text-brand-gold-light mb-6 tracking-tight"
+               className="text-3xl md:text-4xl font-sans font-bold text-brand-gold-light mb-6 tracking-tight"
              >
               {title}
             </motion.h3>
@@ -30,14 +30,8 @@ const Section = ({ title, children, visual, align = 'left' }) => {
           whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 1, delay: 0.2 }}
           viewport={{ once: true }}
-          className={`relative h-[400px] rounded-2xl border border-brand-gold/20 bg-gradient-to-br from-white/5 to-transparent p-1 flex items-center justify-center overflow-hidden ${align === 'right' ? 'md:col-start-1' : ''}`}
+          className={`relative h-[400px] flex items-center justify-center ${align === 'right' ? 'md:col-start-1' : ''}`}
         >
-            {/* Decorative corners */}
-            <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-brand-gold"></div>
-            <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-brand-gold"></div>
-            <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-brand-gold"></div>
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-brand-gold"></div>
-            
             {visual ? visual : <div className="text-brand-gold/30 font-mono text-sm">[DATA VISUALIZATION PLACEHOLDER]</div>}
         </motion.div>
 

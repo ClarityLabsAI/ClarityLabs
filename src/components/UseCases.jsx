@@ -66,135 +66,135 @@ const VisualFilings = () => {
                 ))}
             </div>
 
-                    {/* Middle: Connections & Master Data */}
+            {/* Middle: Connections & Master Data */}
 
-                    <div className="flex-1 w-full flex flex-col items-center justify-center relative">
+            <div className="flex-1 w-full flex flex-col items-center justify-center relative">
 
-                         {/* Convergence Lines (Top -> Master) */}
+                {/* Convergence Lines (Top -> Master) */}
 
-                                      <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet">
+                <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" viewBox="0 0 300 150" preserveAspectRatio="xMidYMid meet">
 
-                                          {/* Inputs to Master - Intermediate spread */}
+                    {/* Inputs to Master - Intermediate spread */}
 
-                                          {[
+                    {[
 
-                                              "M 75 10 C 75 40, 150 20, 150 60",
+                        "M 75 10 C 75 40, 150 20, 150 60",
 
-                                              "M 112 10 C 112 40, 150 20, 150 60",
+                        "M 112 10 C 112 40, 150 20, 150 60",
 
-                                              "M 150 10 L 150 60",
+                        "M 150 10 L 150 60",
 
-                                              "M 187 10 C 187 40, 150 20, 150 60",
+                        "M 187 10 C 187 40, 150 20, 150 60",
 
-                                              "M 225 10 C 225 40, 150 20, 150 60"
+                        "M 225 10 C 225 40, 150 20, 150 60"
 
-                                          ].map((d, i) => (
+                    ].map((d, i) => (
 
-                                              <motion.path 
+                        <motion.path
 
-                                                 key={i} d={d} fill="none" stroke="#E5E7EB" strokeWidth="1.5"
+                            key={i} d={d} fill="none" stroke="#E5E7EB" strokeWidth="1.5"
 
-                                                 initial={{ pathLength: 0 }}
+                            initial={{ pathLength: 0 }}
 
-                                                 whileInView={{ pathLength: 1 }}
+                            whileInView={{ pathLength: 1 }}
 
-                                                 transition={{ duration: 0.8, delay: 0.5 + i * 0.1 }}
+                            transition={{ duration: 0.8, delay: 0.5 + i * 0.1 }}
 
-                                              />
+                        />
 
-                                          ))}
+                    ))}
 
-                                          
 
-                                          {/* Master to Outputs (Fan out) - Intermediate spread */}
 
-                                          {[
+                    {/* Master to Outputs (Fan out) - Intermediate spread */}
 
-                                              "M 150 100 C 150 120, 50 120, 50 150",
+                    {[
 
-                                              "M 150 100 C 150 120, 90 120, 90 150",
+                        "M 150 100 C 150 120, 50 120, 50 150",
 
-                                              "M 150 100 C 150 120, 130 120, 130 150",
+                        "M 150 100 C 150 120, 90 120, 90 150",
 
-                                              "M 150 100 C 150 120, 170 120, 170 150",
+                        "M 150 100 C 150 120, 130 120, 130 150",
 
-                                              "M 150 100 C 150 120, 210 120, 210 150",
+                        "M 150 100 C 150 120, 170 120, 170 150",
 
-                                              "M 150 100 C 150 120, 250 120, 250 150"
+                        "M 150 100 C 150 120, 210 120, 210 150",
 
-                                          ].map((d, i) => (
+                        "M 150 100 C 150 120, 250 120, 250 150"
 
-                                 <motion.path 
+                    ].map((d, i) => (
 
-                                    key={i} d={d} fill="none" stroke="#FACC15" strokeWidth="1.5"
+                        <motion.path
 
-                                    initial={{ pathLength: 0 }}
+                            key={i} d={d} fill="none" stroke="#FACC15" strokeWidth="1.5"
 
-                                    whileInView={{ pathLength: 1 }}
+                            initial={{ pathLength: 0 }}
 
-                                    transition={{ duration: 0.8, delay: 1.7 + i * 0.1 }}
+                            whileInView={{ pathLength: 1 }}
 
-                                 />
+                            transition={{ duration: 0.8, delay: 1.7 + i * 0.1 }}
 
-                             ))}
+                        />
 
-                         </svg>
+                    ))}
 
-            
+                </svg>
 
-                         {/* Master Data Node */}
 
-                         <motion.div
 
-                            initial={{ scale: 0.8, opacity: 0 }}
+                {/* Master Data Node */}
 
-                            whileInView={{ scale: 1, opacity: 1 }}
+                <motion.div
 
-                            transition={{ delay: 1.2, duration: 0.5 }}
+                    initial={{ scale: 0.8, opacity: 0 }}
 
-                            className="w-28 h-10 border border-brand-gold bg-yellow-50 rounded flex flex-col items-center justify-center z-10 shadow-sm mt-2"
+                    whileInView={{ scale: 1, opacity: 1 }}
 
-                         >
+                    transition={{ delay: 1.2, duration: 0.5 }}
 
-                            <span className="text-[8px] font-mono text-yellow-700 tracking-wider font-bold">MASTER DATA</span>
+                    className="w-28 h-10 border border-brand-gold bg-yellow-50 rounded flex flex-col items-center justify-center z-10 shadow-sm mt-2"
 
-                         </motion.div>
+                >
 
-                    </div>
+                    <span className="text-[8px] font-mono text-yellow-700 tracking-wider font-bold">MASTER DATA</span>
 
-            
+                </motion.div>
 
-                    {/* Bottom: Outputs Grid */}
+            </div>
 
-                    <div className="grid grid-cols-6 gap-3 z-10 mt-1">
 
-                        {[...Array(6)].map((_, i) => (
 
-                            <motion.div
+            {/* Bottom: Outputs Grid */}
 
-                                key={i}
+            <div className="grid grid-cols-6 gap-3 z-10 mt-1">
 
-                                initial={{ opacity: 0, scale: 0.8 }}
+                {[...Array(6)].map((_, i) => (
 
-                                whileInView={{ opacity: 1, scale: 1, borderColor: "#FACC15", backgroundColor: "#FEFCE8" }}
+                    <motion.div
 
-                                transition={{ delay: 2.2 + i * 0.1 }}
+                        key={i}
 
-                                className="w-8 h-10 border border-gray-200 bg-white rounded flex flex-col p-1 shadow-sm"
+                        initial={{ opacity: 0, scale: 0.8 }}
 
-                            >
+                        whileInView={{ opacity: 1, scale: 1, borderColor: "#FACC15", backgroundColor: "#FEFCE8" }}
 
-                                <div className="w-full h-0.5 bg-gray-200 mb-1"></div>
+                        transition={{ delay: 2.2 + i * 0.1 }}
 
-                                <div className="w-2/3 h-0.5 bg-gray-200"></div>
+                        className="w-8 h-10 border border-gray-200 bg-white rounded flex flex-col p-1 shadow-sm"
 
-                                <div className="mt-auto self-end w-1.5 h-1.5 rounded-full bg-brand-gold"></div>
+                    >
 
-                            </motion.div>
+                        <div className="w-full h-0.5 bg-gray-200 mb-1"></div>
 
-                        ))}
+                        <div className="w-2/3 h-0.5 bg-gray-200"></div>
 
-                    </div>
+                        <div className="mt-auto self-end w-1.5 h-1.5 rounded-full bg-brand-gold"></div>
+
+                    </motion.div>
+
+                ))}
+
+            </div>
         </div>
     );
 };
@@ -323,7 +323,7 @@ const UseCases = () => {
     return (
         <section className="bg-black">
             <div className="pt-20 pb-12 text-center">
-                <h2 className="text-4xl md:text-5xl font-sans font-bold text-white mb-4">Proven Results</h2>
+                <h2 className="text-5xl md:text-6xl font-sans font-bold text-white mb-4">Proven Results</h2>
                 <p className="text-gray-400 max-w-2xl mx-auto">Real-world impact across industries.</p>
             </div>
 
