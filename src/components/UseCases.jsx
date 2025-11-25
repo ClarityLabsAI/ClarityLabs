@@ -3,11 +3,11 @@ import React from 'react';
 
 const UseCasePanel = ({ title, children, visual, align = 'left', headerContent = null }) => {
   return (
-    <div className="py-24 border-b border-white/10 bg-black relative overflow-hidden">
+    <div className="py-8 lg:py-16 border-b border-white/10 bg-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Mobile Layout: Title -> Visual -> Text */}
-        <div className="flex flex-col lg:hidden gap-8">
+        <div className="flex flex-col lg:hidden gap-4">
             <h3 className="text-3xl font-sans font-bold text-white tracking-tight">
                 {title}
             </h3>
