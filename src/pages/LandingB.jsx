@@ -1,6 +1,7 @@
 import React from 'react';
 import LandingLayout from '../layouts/LandingLayout';
 import Section from '../components/Section';
+import UseCases from '../components/UseCases';
 
 const LandingB = () => {
   return (
@@ -137,6 +138,9 @@ const LandingB = () => {
             </li>
         </ul>
       </Section>
+
+      {/* Use Cases Section */}
+      <UseCases />
 
     </LandingLayout>
   );

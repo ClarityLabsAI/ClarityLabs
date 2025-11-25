@@ -1,6 +1,7 @@
 import React from 'react';
 import LandingLayout from '../layouts/LandingLayout';
 import Section from '../components/Section';
+import UseCases from '../components/UseCases';
 
 const LandingA = () => {
   return (
@@ -113,6 +114,9 @@ const LandingA = () => {
            When your data is structured, AI becomes a partner that understands your context, history, and goals.
         </p>
       </Section>
+
+      {/* Use Cases Section */}
+      <UseCases />
 
     </LandingLayout>
   );
