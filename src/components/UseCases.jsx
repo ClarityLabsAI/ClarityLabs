@@ -2,42 +2,67 @@ import { motion } from 'framer-motion';
 import React from 'react';
 
 const UseCasePanel = ({ title, children, visual, align = 'left' }) => {
-    return (
-        <div className="py-24 border-b border-white/10 bg-black relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+  return (
+    <div className="py-24 border-b border-white/10 bg-black relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Mobile Layout: Title -> Visual -> Text */}
+        <div className="flex flex-col lg:hidden gap-8">
+            <h3 className="text-3xl font-sans font-bold text-white tracking-tight">
+                {title}
+            </h3>
+            
+            <div className="relative rounded-xl border border-gray-700 bg-gray-200 aspect-video overflow-hidden shadow-2xl">
+                 <div className="absolute top-0 left-0 w-full h-8 bg-gray-100 border-b border-gray-300 flex items-center px-3 gap-2 z-10">
+                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                 </div>
+                 <div className="w-full h-full pt-8 flex items-center justify-center p-6 bg-white">
+                    {visual}
+                 </div>
+            </div>
 
-                {/* Text Content */}
-                <div className={`order-2 ${align === 'right' ? 'lg:order-1' : 'lg:order-2'}`}>
-                    <h3 className="text-3xl font-sans font-bold text-white mb-6 tracking-tight">
-                        {title}
-                    </h3>
-                    <div className="space-y-4 text-gray-400 leading-relaxed text-lg">
-                        {children}
-                    </div>
-                </div>
-
-                {/* Visual Demo - Light Mode App Container */}
-                <div className={`order-1 ${align === 'right' ? 'lg:order-2' : 'lg:order-1'}`}>
-                    <div className="relative rounded-xl border border-gray-700 bg-gray-200 aspect-video overflow-hidden shadow-2xl">
-                        {/* Window Controls (Light Mode) */}
-                        <div className="absolute top-0 left-0 w-full h-8 bg-gray-100 border-b border-gray-300 flex items-center px-3 gap-2 z-10">
-                            <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                            <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                        </div>
-
-                        {/* The Visual Content - White Background */}
-                        <div className="w-full h-full pt-8 flex items-center justify-center p-6 bg-white">
-                            {visual}
-                        </div>
-                    </div>
-                </div>
-
+            <div className="space-y-4 text-gray-400 leading-relaxed text-lg">
+                {children}
             </div>
         </div>
-    );
-};
 
+        {/* Desktop Layout: Side-by-Side */}
+        <div className="hidden lg:grid grid-cols-2 gap-16 items-center">
+            
+            {/* Text Content */}
+            <div className={align === 'right' ? 'order-1' : 'order-2'}>
+            <h3 className="text-3xl font-sans font-bold text-white mb-6 tracking-tight">
+                {title}
+            </h3>
+            <div className="space-y-4 text-gray-400 leading-relaxed text-lg">
+                {children}
+            </div>
+            </div>
+
+            {/* Visual Demo */}
+            <div className={align === 'right' ? 'order-2' : 'order-1'}>
+            <div className="relative rounded-xl border border-gray-700 bg-gray-200 aspect-video overflow-hidden shadow-2xl">
+                {/* Window Controls (Light Mode) */}
+                <div className="absolute top-0 left-0 w-full h-8 bg-gray-100 border-b border-gray-300 flex items-center px-3 gap-2 z-10">
+                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                </div>
+                
+                {/* The Visual Content - White Background */}
+                <div className="w-full h-full pt-8 flex items-center justify-center p-6 bg-white">
+                    {visual}
+                </div>
+            </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  );
+};
 // Visual 1: Regulatory Filings (Top-Down Flow, Light Mode)
 const VisualFilings = () => {
     // Input types configuration
