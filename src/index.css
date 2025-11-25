@@ -4,10 +4,10 @@
 @theme {
   --color-brand-black: #000000;
   --color-brand-gold: #E9A319;
-  --color-brand-gold-light: #FEF08A;
+  --color-brand-gold-light: #FCD34D;
   --color-brand-gold-dim: #854D0E;
   --color-brand-dark-gray: #0a0a0a;
-  
+
   --font-mono: "JetBrains Mono", monospace;
   --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }

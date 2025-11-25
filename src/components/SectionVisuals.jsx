@@ -3,15 +3,18 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { AlertCircle, Database, FileSpreadsheet, FileText, Mail, Mic } from 'lucide-react';
 
+const GOLD = "#FFBF00";
+
 // --- Shared Container (No Window Chrome) ---
 const SimpleContainer = ({ children, transparent = false }) => (
-  <div className={`relative w-full h-full aspect-[2/1] overflow-hidden ${transparent ? '' : 'lg:rounded-xl lg:border lg:border-white/10 lg:bg-black/40 lg:bg-gradient-to-br lg:from-white/5 lg:to-transparent lg:shadow-2xl lg:backdrop-blur-sm'}`}>
-    {/* Content */}
-    <div className="w-full h-full relative">
-        {children}
+    <div className={`relative w-full h-full aspect-[2/1] overflow-hidden ${transparent ? '' : 'lg:rounded-xl lg:border lg:border-white/10 lg:bg-black/40 lg:bg-gradient-to-br lg:from-white/5 lg:to-transparent lg:shadow-2xl lg:backdrop-blur-sm'}`}>
+        {/* Content */}
+        <div className="w-full h-full relative">
+            {children}
+        </div>
     </div>
-  </div>
 );
+
 // --- Landing A Visuals (Static) ---
 
 export const VisualWave = () => (
@@ -26,14 +29,15 @@ export const VisualWave = () => (
                 </div>
             </div>
 
-                        {/* Graph Lines */}
-                        <svg className="absolute inset-0 w-full h-full pointer-events-none p-8 overflow-visible">
-                            {/* "You" Line (Exponential) */}
-                            <path 
-                                d="M 0 300 Q 200 300 350 50" 
-                                fill="none" stroke="#E9A319" strokeWidth="4"
-                            />
-                        </svg>
+            {/* Graph Lines */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none p-8 overflow-visible">
+                {/* "You" Line (Exponential) */}
+                <path
+                    d="M 0 300 Q 200 300 350 50"
+                    fill="none" stroke={GOLD} strokeWidth="4"
+                />
+            </svg>
+
             {/* Labels */}
             <div className="absolute top-1/4 right-12 bg-brand-gold/20 border border-brand-gold px-3 py-1 rounded text-brand-gold text-xs font-bold">
                 AI ADOPTION
@@ -72,13 +76,13 @@ export const VisualWeapon = () => {
                         "M 280 100 C 280 140, 200 120, 200 180"
                     ].map((d, i) => (
                         <path
-                            key={i} d={d} fill="none" stroke="#FACC15" strokeWidth="1.5" strokeOpacity="0.5"
+                            key={i} d={d} fill="none" stroke={GOLD} strokeWidth="1.5" strokeOpacity="0.5"
                         />
                     ))}
                 </svg>
 
                 {/* Master Data Core */}
-                <div className="w-40 h-16 border-2 border-brand-gold bg-brand-gold/20 rounded-lg flex flex-col items-center justify-center z-20 backdrop-blur-md mt-16 shadow-[0_0_15px_#FACC15]">
+                <div className={`w-40 h-16 border-2 border-brand-gold bg-brand-gold/20 rounded-lg flex flex-col items-center justify-center z-20 backdrop-blur-md mt-16 shadow-[0_0_15px_${GOLD}]`}>
                     <div className="text-brand-gold font-bold tracking-widest text-xs">MASTER DATA</div>
                     <div className="text-[8px] text-brand-gold/70">Structured Knowledge</div>
                 </div>
@@ -92,8 +96,8 @@ export const VisualNetwork = () => (
     <SimpleContainer>
         <div className="w-full h-full flex items-center justify-center relative">
             {/* Network Lines */}
-             <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                <g stroke="#E9A319" strokeWidth="1" strokeOpacity="0.3">
+            <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                <g stroke={GOLD} strokeWidth="1" strokeOpacity="0.3">
                     <line x1="200" y1="150" x2="100" y2="100" />
                     <line x1="200" y1="150" x2="300" y2="100" />
                     <line x1="200" y1="150" x2="100" y2="200" />
@@ -103,7 +107,7 @@ export const VisualNetwork = () => (
             </svg>
 
             {/* Central Brain Node */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 border-brand-gold bg-brand-gold/10 flex items-center justify-center z-20 shadow-[0_0_15px_#FACC15]">
+            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 border-brand-gold bg-brand-gold/10 flex items-center justify-center z-20 shadow-[0_0_15px_${GOLD}]`}>
                 <div className="w-8 h-8 bg-brand-gold rounded-full opacity-80"></div>
             </div>
 
@@ -168,7 +172,7 @@ export const VisualBurden = ({ step = 1, transparent = false }) => {
                 <>
                     <div className="h-6 bg-gray-800 border-b border-gray-700 flex items-center px-2 gap-1">
                         <div className="w-2 h-2 rounded-full bg-red-500/50"></div>
-                        <div className="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+                        <div className={`w-2 h-2 rounded-full bg-[${GOLD}]/50`}></div>
                     </div>
                     <div className="flex flex-col items-center justify-center h-full pb-6 text-gray-500">
                         <Database size={24} />
@@ -212,7 +216,7 @@ export const VisualBurden = ({ step = 1, transparent = false }) => {
                     <div className="p-4 flex items-center justify-center h-full text-gray-600">
                         <FileText size={32} />
                     </div>
-                    <div className="absolute bottom-2 right-2 bg-yellow-500/20 text-yellow-500 text-[9px] px-1 rounded border border-yellow-500/30">DEPRECATED</div>
+                    <div className={`absolute bottom-2 right-2 bg-[${GOLD}]/20 text-[${GOLD}] text-[9px] px-1 rounded border border-[${GOLD}]/30`}>DEPRECATED</div>
                 </>
             )
         },
@@ -284,11 +288,12 @@ export const VisualBurden = ({ step = 1, transparent = false }) => {
             zIndex: 10,
             right: "auto" // Clear any right props
         };
-        };
-    
-        return (
+    };
+
+    return (
         <SimpleContainer transparent={transparent}>
             <div className="w-full h-full relative overflow-hidden p-4 transition-all duration-1000">
+
                 {/* --- CONNECTIONS (Step 2 & 3) --- */}
                 <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
                     {/* Step 2: Yellow lines from Bottom Grid to Master Data */}
@@ -296,12 +301,8 @@ export const VisualBurden = ({ step = 1, transparent = false }) => {
                         const slotWidth = 12.8;
                         const leftPos = 5 + (i * slotWidth) + (slotWidth / 2);
 
-                        // Coordinate mapping (approx based on CSS % positions)
                         const startX = leftPos;
                         const startY = 80; // Top of bottom files (approx 100% - 50px/400px ~ 12.5% margin -> 87.5% bottom -> top is higher)
-                        // Let's estimate: 50px bottom is 12.5% of 400px. Height 4.5rem (~72px) is 18%. 
-                        // So top of files is at 100 - 12.5 - 18 = 69.5%. Let's say 70.
-
                         const endX = 50;
                         const endY = 41; // Bottom of Master Data (Top 35% + ~6% height = 41%)
 
@@ -309,7 +310,7 @@ export const VisualBurden = ({ step = 1, transparent = false }) => {
                             <motion.path
                                 key={`yellow-${i}`}
                                 d={`M ${startX} ${70} C ${startX} ${60}, ${endX} ${55}, ${endX} ${endY}`}
-                                fill="none" stroke="#FACC15" strokeWidth="0.5" strokeOpacity="0.6"
+                                fill="none" stroke={GOLD} strokeWidth="0.5" strokeOpacity="0.6"
                                 initial={{ pathLength: 0 }}
                                 animate={{ pathLength: 1 }}
                                 transition={{ duration: 0.8, delay: 0.5 + i * 0.05 }}
@@ -321,11 +322,8 @@ export const VisualBurden = ({ step = 1, transparent = false }) => {
                     {step >= 3 && [20, 40, 60, 80].map((x, i) => (
                         <motion.path
                             key={`gray-${i}`}
-                            // Start from x% on the Master Data box (which spans center, approx 20% to 80% now that it's wide)
-                            // Actually, let's just draw straight vertical lines from the X position of the chip down to the box top.
-                            // Top of box is ~29%. Chips bottom is ~12%.
                             d={`M ${x} 30 L ${x} 15`}
-                            fill="none" stroke="#E5E7EB" strokeWidth="0.5" strokeOpacity="0.4"
+                            fill="none" stroke="#FFBF00" strokeWidth="0.5" strokeOpacity="0.4"
                             initial={{ pathLength: 0 }}
                             animate={{ pathLength: 1 }}
                             transition={{ duration: 0.8, delay: 0.2 + i * 0.1 }}
@@ -341,13 +339,13 @@ export const VisualBurden = ({ step = 1, transparent = false }) => {
                     animate={step >= 2 ? { opacity: 1, scale: 1, width: "80%" } : { opacity: 0, scale: 0, width: "10rem" }} // Animate width
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <div className="w-full h-12 border-2 border-brand-gold bg-brand-gold/20 rounded flex flex-col items-center justify-center backdrop-blur-md shadow-[0_0_15px_#FACC15] text-center px-4">
+                    <div className={`w-full h-12 border-2 border-brand-gold bg-brand-gold/20 rounded flex flex-col items-center justify-center backdrop-blur-md shadow-[0_0_15px_${GOLD}] text-center px-4`}>
                         <span className="text-brand-gold font-bold text-[10px] tracking-widest">STRUCTURED KNOWLEDGE</span>
                     </div>
                 </motion.div>
 
                 {/* --- USE CASES (Step 3+) --- */}
-                <div className="absolute top-10 left-0 right-0 flex justify-center gap-4 z-20 w-full px-8 pointer-events-none"> {/* Raised to top-4 */}
+                <div className="absolute top-4 left-0 right-0 flex justify-center gap-4 z-20 w-full px-8 pointer-events-none"> {/* Raised to top-4 */}
                     {/* Distribute these evenly to match the gray lines targets (20%, 40%, 60%, 80%) */}
                     {["Compliance", "Support", "Verifier", "..."].map((label, i) => (
                         <motion.div
@@ -409,7 +407,7 @@ export const VisualAtlas = () => (
 
                 {/* Core */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-4 h-4 bg-brand-gold rounded-full shadow-[0_0_20px_#E9A319]"></div>
+                    <div className={`w-4 h-4 bg-brand-gold rounded-full shadow-[0_0_20px_${GOLD}]`}></div>
                 </div>
 
                 {/* Floating Data Points */}

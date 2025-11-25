@@ -13,14 +13,14 @@ const LandingLayout = ({ title, subtitle, children }) => {
           <ParticleCanvas />
         </div>
 
-                {/* Centered Title - Absolutely Positioned for perfect center */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                    <div>
-                        <h1 className="text-7xl md:text-9xl font-bold text-white font-sans drop-shadow-2xl shadow-black" style={{ textShadow: "0 4px 12px rgba(0,0,0,0.8)" }}>
-                        Clarity Labs
-                        </h1>
-                    </div>
-                </div>
+        {/* Centered Title - Absolutely Positioned for perfect center */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+          <div>
+            <h1 className="text-7xl md:text-9xl font-bold text-white font-sans drop-shadow-2xl shadow-black" style={{ textShadow: "0 4px 12px rgba(0,0,0,0.8)" }}>
+              Clarity Labs
+            </h1>
+          </div>
+        </div>
         {/* Bottom Elements: Subtitle + Chevron - Absolutely Positioned at bottom */}
         <div className="absolute bottom-8 left-0 w-full flex flex-col items-center gap-6 pointer-events-auto z-10">
           <motion.div
@@ -30,7 +30,7 @@ const LandingLayout = ({ title, subtitle, children }) => {
             className="max-w-4xl mx-auto text-center px-4"
           >
             <h2 className="text-3xl md:text-4xl text-gray-200 font-light tracking-wide mb-2 drop-shadow-2xl" style={{ textShadow: "0 4px 12px rgba(0,0,0,0.8)" }}>
-              Make sense of your enterprise knowledge
+              Harness your enterprise knowledge
             </h2>
           </motion.div>
           <motion.div

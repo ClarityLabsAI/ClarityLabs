@@ -1,73 +1,75 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
+const GOLD = "#FFBF00";
+
 const UseCasePanel = ({ title, children, visual, align = 'left', headerContent = null }) => {
-  return (
-    <div className="py-8 lg:py-16 border-b border-white/10 bg-black relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Mobile Layout: Title -> Visual -> Text */}
-        <div className="flex flex-col lg:hidden gap-4">
-            <h3 className="text-3xl font-sans font-bold text-white tracking-tight">
-                {title}
-            </h3>
-            
-            <div className="relative rounded-xl border border-gray-700 bg-gray-200 aspect-video overflow-hidden shadow-2xl">
-                 <div className="absolute top-0 left-0 w-full h-8 bg-gray-100 border-b border-gray-300 flex items-center justify-between px-3 z-10">
-                    <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                    </div>
-                    {headerContent}
-                 </div>
-                 <div className="w-full h-full pt-8 flex items-center justify-center p-6 bg-white">
-                    {visual}
-                 </div>
-            </div>
+    return (
+        <div className="py-8 lg:py-16 border-b border-white/10 bg-black relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6">
 
-            <div className="space-y-4 text-gray-400 leading-relaxed text-lg">
-                {children}
+                {/* Mobile Layout: Title -> Visual -> Text */}
+                <div className="flex flex-col lg:hidden gap-4">
+                    <h3 className="text-3xl font-sans font-bold text-white tracking-tight">
+                        {title}
+                    </h3>
+
+                    <div className="relative rounded-xl border border-gray-700 bg-gray-200 aspect-video overflow-hidden shadow-2xl">
+                        <div className="absolute top-0 left-0 w-full h-8 bg-gray-100 border-b border-gray-300 flex items-center justify-between px-3 z-10">
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                                <div className={`w-3 h-3 rounded-full bg-[${GOLD}]`}></div>
+                                <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                            </div>
+                            {headerContent}
+                        </div>
+                        <div className="w-full h-full pt-8 flex items-center justify-center p-6 bg-white">
+                            {visual}
+                        </div>
+                    </div>
+
+                    <div className="space-y-4 text-gray-400 leading-relaxed text-lg">
+                        {children}
+                    </div>
+                </div>
+
+                {/* Desktop Layout: Side-by-Side */}
+                <div className="hidden lg:grid grid-cols-2 gap-16 items-center">
+
+                    {/* Text Content */}
+                    <div className={align === 'right' ? 'order-1' : 'order-2'}>
+                        <h3 className="text-3xl font-sans font-bold text-white mb-6 tracking-tight">
+                            {title}
+                        </h3>
+                        <div className="space-y-4 text-gray-400 leading-relaxed text-lg">
+                            {children}
+                        </div>
+                    </div>
+
+                    {/* Visual Demo */}
+                    <div className={align === 'right' ? 'order-2' : 'order-1'}>
+                        <div className="relative rounded-xl border border-gray-700 bg-gray-200 aspect-video overflow-hidden shadow-2xl">
+                            {/* Window Controls (Light Mode) */}
+                            <div className="absolute top-0 left-0 w-full h-8 bg-gray-100 border-b border-gray-300 flex items-center justify-between px-3 z-10">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div className={`w-3 h-3 rounded-full bg-[${GOLD}]`}></div>
+                                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                {headerContent}
+                            </div>
+
+                            {/* The Visual Content - White Background */}
+                            <div className="w-full h-full pt-8 flex items-center justify-center p-6 bg-white">
+                                {visual}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-
-        {/* Desktop Layout: Side-by-Side */}
-        <div className="hidden lg:grid grid-cols-2 gap-16 items-center">
-            
-            {/* Text Content */}
-            <div className={align === 'right' ? 'order-1' : 'order-2'}>
-            <h3 className="text-3xl font-sans font-bold text-white mb-6 tracking-tight">
-                {title}
-            </h3>
-            <div className="space-y-4 text-gray-400 leading-relaxed text-lg">
-                {children}
-            </div>
-            </div>
-
-            {/* Visual Demo */}
-            <div className={align === 'right' ? 'order-2' : 'order-1'}>
-            <div className="relative rounded-xl border border-gray-700 bg-gray-200 aspect-video overflow-hidden shadow-2xl">
-                {/* Window Controls (Light Mode) */}
-                <div className="absolute top-0 left-0 w-full h-8 bg-gray-100 border-b border-gray-300 flex items-center justify-between px-3 z-10">
-                    <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                    </div>
-                    {headerContent}
-                </div>
-                
-                {/* The Visual Content - White Background */}
-                <div className="w-full h-full pt-8 flex items-center justify-center p-6 bg-white">
-                    {visual}
-                </div>
-            </div>
-            </div>
-
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 // Visual 1: Regulatory Filings (Top-Down Flow, Light Mode)
 const VisualFilings = () => {
@@ -123,7 +125,7 @@ const VisualFilings = () => {
 
                         <motion.path
 
-                            key={i} d={d} fill="none" stroke="#E5E7EB" strokeWidth="1.5"
+                            key={i} d={d} fill="none" stroke="#FFBF00" strokeWidth="1.5"
 
                             initial={{ pathLength: 0 }}
 
@@ -157,7 +159,7 @@ const VisualFilings = () => {
 
                         <motion.path
 
-                            key={i} d={d} fill="none" stroke="#E9A319" strokeWidth="1.5"
+                            key={i} d={d} fill="none" stroke={GOLD} strokeWidth="1.5"
 
                             initial={{ pathLength: 0 }}
 
@@ -183,11 +185,12 @@ const VisualFilings = () => {
 
                     transition={{ delay: 1.2, duration: 0.5 }}
 
-                    className="w-28 h-10 border border-brand-gold bg-yellow-50 rounded flex flex-col items-center justify-center z-10 shadow-sm mt-2"
+                    className="w-28 h-10 border border-brand-gold rounded flex flex-col items-center justify-center z-10 shadow-sm mt-2"
+                    style={{ backgroundColor: `${GOLD}1A` }} // 10% opacity approx
 
                 >
 
-                    <span className="text-[8px] font-mono text-yellow-700 tracking-wider font-bold">MASTER DATA</span>
+                    <span className="text-[8px] font-mono tracking-wider font-bold" style={{ color: GOLD }}>MASTER DATA</span>
 
                 </motion.div>
 
@@ -207,7 +210,7 @@ const VisualFilings = () => {
 
                         initial={{ opacity: 0, scale: 0.8 }}
 
-                        whileInView={{ opacity: 1, scale: 1, borderColor: "#E9A319", backgroundColor: "#FEFCE8" }}
+                        whileInView={{ opacity: 1, scale: 1, borderColor: GOLD, backgroundColor: "#FEFCE8" }}
 
                         transition={{ delay: 2.2 + i * 0.1 }}
 
@@ -235,9 +238,9 @@ const VisualDisputes = () => (
     <div className="w-full max-w-sm border border-gray-200 bg-gray-50 rounded-lg shadow-lg p-4 font-mono text-xs">
         {/* Logic Steps */}
         <div className="flex flex-col relative">
-            
+
             {/* Step 1 */}
-            <motion.div 
+            <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
@@ -254,7 +257,7 @@ const VisualDisputes = () => (
             <div className="h-4 w-px bg-gray-300 ml-2 my-1"></div>
 
             {/* Step 2 */}
-            <motion.div 
+            <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
@@ -271,19 +274,18 @@ const VisualDisputes = () => (
             <div className="h-4 w-px bg-gray-300 ml-2 my-1"></div>
 
             {/* Step 3 */}
-             <motion.div 
+            <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
                 className="flex items-center gap-3 relative z-10"
             >
                 <div className="w-4 h-4 rounded-full bg-brand-gold text-white flex items-center justify-center font-bold text-[10px] shadow-md shrink-0">$</div>
-                <div className="bg-yellow-50 p-2 rounded w-full border border-brand-gold/30 shadow-sm">
-                    <span className="text-yellow-700 block text-[10px] font-bold">DECISION</span>
+                <div className={`bg-[${GOLD}]/10 p-2 rounded w-full border border-brand-gold/30 shadow-sm`}>
+                    <span className="block text-[10px] font-bold" style={{ color: GOLD }}>DECISION</span>
                     <span className="text-gray-900 font-bold">Approve Refund: $45.00</span>
                 </div>
-            </motion.div>
-        </div>
+            </motion.div>        </div>
     </div>
 );
 
