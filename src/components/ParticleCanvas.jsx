@@ -31,66 +31,36 @@ const ParticleCanvas = () => {
         // Helper to parse SVG content
         const parseSVG = (text) => {
             const parser = new DOMParser();
-            const doc = parser.parseFromString(text, 'image/svg+xml');
-            const segments = [];
-
-            // Helper to recursively find transforms
-            const getTransform = (el) => {
-                let transform = '';
-                let current = el;
-                while (current && current !== doc) {
-                    if (current.getAttribute && current.getAttribute('transform')) {
-                        transform += current.getAttribute('transform') + ' ';
-                    }
-                    current = current.parentNode;
-                }
-                return transform;
-            };
-
-            const applyTransform = (x, y, transform) => {
-                if (!transform) return { x, y };
-                // Simple handler for the specific rotation we know exists
-                if (transform.includes('rotate(90 50 50)')) {
-                    // Rotate 90 deg around 50,50: (x, y) -> (100-y, x)
-                    return { x: 100 - y, y: x };
-                }
-                return { x, y };
-            };
-
-            // Process Lines
-            doc.querySelectorAll('line').forEach(line => {
-                const t = getTransform(line);
-                const x1 = parseFloat(line.getAttribute('x1'));
-                const y1 = parseFloat(line.getAttribute('y1'));
-                const x2 = parseFloat(line.getAttribute('x2'));
-                const y2 = parseFloat(line.getAttribute('y2'));
-
-                const p1 = applyTransform(x1, y1, t);
-                const p2 = applyTransform(x2, y2, t);
-                segments.push({ p1, p2 });
-            });
-
-            // Process Polygons
-            doc.querySelectorAll('polygon').forEach(poly => {
-                const t = getTransform(poly);
-                const pointsRaw = poly.getAttribute('points').trim().split(/[\s,]+/);
-                const coords = [];
-                for (let i = 0; i < pointsRaw.length; i += 2) {
-                    coords.push({
-                        x: parseFloat(pointsRaw[i]),
-                        y: parseFloat(pointsRaw[i + 1])
-                    });
-                }
-
-                for (let i = 0; i < coords.length; i++) {
-                    const a = coords[i];
-                    const b = coords[(i + 1) % coords.length];
-                    const pa = applyTransform(a.x, a.y, t);
-                    const pb = applyTransform(b.x, b.y, t);
-                    segments.push({ p1: pa, p2: pb });
-                }
-            });
-
+                        const doc = parser.parseFromString(text, 'image/svg+xml');
+                        const segments = [];
+            
+                        // Process Lines
+                        doc.querySelectorAll('line').forEach(line => {
+                            const x1 = parseFloat(line.getAttribute('x1'));
+                            const y1 = parseFloat(line.getAttribute('y1'));
+                            const x2 = parseFloat(line.getAttribute('x2'));
+                            const y2 = parseFloat(line.getAttribute('y2'));
+            
+                            segments.push({ p1: { x: x1, y: y1 }, p2: { x: x2, y: y2 } });
+                        });
+            
+                        // Process Polygons
+                        doc.querySelectorAll('polygon').forEach(poly => {
+                            const pointsRaw = poly.getAttribute('points').trim().split(/[\s,]+/);
+                            const coords = [];
+                            for (let i = 0; i < pointsRaw.length; i += 2) {
+                                coords.push({ 
+                                    x: parseFloat(pointsRaw[i]), 
+                                    y: parseFloat(pointsRaw[i + 1]) 
+                                });
+                            }
+            
+                            for (let i = 0; i < coords.length; i++) {
+                                const a = coords[i];
+                                const b = coords[(i + 1) % coords.length];
+                                segments.push({ p1: a, p2: b });
+                            }
+                        });
             return segments;
         };
 
