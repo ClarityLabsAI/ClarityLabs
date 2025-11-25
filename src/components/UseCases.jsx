@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
-const UseCasePanel = ({ title, children, visual, align = 'left' }) => {
+const UseCasePanel = ({ title, children, visual, align = 'left', headerContent = null }) => {
   return (
     <div className="py-24 border-b border-white/10 bg-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -13,10 +13,13 @@ const UseCasePanel = ({ title, children, visual, align = 'left' }) => {
             </h3>
             
             <div className="relative rounded-xl border border-gray-700 bg-gray-200 aspect-video overflow-hidden shadow-2xl">
-                 <div className="absolute top-0 left-0 w-full h-8 bg-gray-100 border-b border-gray-300 flex items-center px-3 gap-2 z-10">
-                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                 <div className="absolute top-0 left-0 w-full h-8 bg-gray-100 border-b border-gray-300 flex items-center justify-between px-3 z-10">
+                    <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                        <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                        <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    {headerContent}
                  </div>
                  <div className="w-full h-full pt-8 flex items-center justify-center p-6 bg-white">
                     {visual}
@@ -45,10 +48,13 @@ const UseCasePanel = ({ title, children, visual, align = 'left' }) => {
             <div className={align === 'right' ? 'order-2' : 'order-1'}>
             <div className="relative rounded-xl border border-gray-700 bg-gray-200 aspect-video overflow-hidden shadow-2xl">
                 {/* Window Controls (Light Mode) */}
-                <div className="absolute top-0 left-0 w-full h-8 bg-gray-100 border-b border-gray-300 flex items-center px-3 gap-2 z-10">
-                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                <div className="absolute top-0 left-0 w-full h-8 bg-gray-100 border-b border-gray-300 flex items-center justify-between px-3 z-10">
+                    <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                        <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                        <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    {headerContent}
                 </div>
                 
                 {/* The Visual Content - White Background */}
@@ -224,53 +230,54 @@ const VisualFilings = () => {
     );
 };
 
-// Visual 2: Customer Disputes (Light Mode)
+// Visual 2: Customer Support (Light Mode)
 const VisualDisputes = () => (
-    <div className="w-full max-w-sm border border-gray-200 bg-gray-50 rounded-lg p-4 font-mono text-xs shadow-lg">
-        {/* Header */}
-        <div className="flex justify-between text-gray-500 mb-4 border-b border-gray-200 pb-2">
-            <span className="font-bold text-gray-700">CASE #8291</span>
-            <span className="text-green-700 bg-green-100 px-2 py-0.5 rounded-full text-[10px] font-bold border border-green-200">AUTO-RESOLVED</span>
-        </div>
-
+    <div className="w-full max-w-sm border border-gray-200 bg-gray-50 rounded-lg shadow-lg p-4 font-mono text-xs">
         {/* Logic Steps */}
-        <div className="space-y-4 relative">
-            {/* Connecting Line */}
-            <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gray-300"></div>
-
-            <motion.div
+        <div className="flex flex-col relative">
+            
+            {/* Step 1 */}
+            <motion.div 
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
                 className="flex items-center gap-3 relative z-10"
             >
-                <div className="w-4 h-4 rounded-full bg-white border border-green-500 flex items-center justify-center text-[8px] text-green-600 font-bold">✓</div>
+                <div className="w-4 h-4 rounded-full bg-white border border-green-500 flex items-center justify-center text-[8px] text-green-600 font-bold shrink-0">✓</div>
                 <div className="bg-white p-2 rounded w-full border border-gray-200 shadow-sm">
                     <span className="text-gray-400 block text-[10px] font-bold">STEP 1: POLICY CHECK</span>
                     <span className="text-gray-800">Plan covers accidental damage</span>
                 </div>
             </motion.div>
 
-            <motion.div
+            {/* Connector 1 */}
+            <div className="h-4 w-px bg-gray-300 ml-2 my-1"></div>
+
+            {/* Step 2 */}
+            <motion.div 
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
                 className="flex items-center gap-3 relative z-10"
             >
-                <div className="w-4 h-4 rounded-full bg-white border border-green-500 flex items-center justify-center text-[8px] text-green-600 font-bold">✓</div>
+                <div className="w-4 h-4 rounded-full bg-white border border-green-500 flex items-center justify-center text-[8px] text-green-600 font-bold shrink-0">✓</div>
                 <div className="bg-white p-2 rounded w-full border border-gray-200 shadow-sm">
                     <span className="text-gray-400 block text-[10px] font-bold">STEP 2: USAGE LOGS</span>
                     <span className="text-gray-800">Customer active since 2021</span>
                 </div>
             </motion.div>
 
-            <motion.div
+            {/* Connector 2 */}
+            <div className="h-4 w-px bg-gray-300 ml-2 my-1"></div>
+
+            {/* Step 3 */}
+             <motion.div 
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
                 className="flex items-center gap-3 relative z-10"
             >
-                <div className="w-4 h-4 rounded-full bg-brand-gold text-white flex items-center justify-center font-bold text-[10px] shadow-md">$</div>
+                <div className="w-4 h-4 rounded-full bg-brand-gold text-white flex items-center justify-center font-bold text-[10px] shadow-md shrink-0">$</div>
                 <div className="bg-yellow-50 p-2 rounded w-full border border-brand-gold/30 shadow-sm">
                     <span className="text-yellow-700 block text-[10px] font-bold">DECISION</span>
                     <span className="text-gray-900 font-bold">Approve Refund: $45.00</span>
@@ -366,9 +373,15 @@ const UseCases = () => {
             </UseCasePanel>
 
             <UseCasePanel
-                title="Customer Disputes"
+                title="Customer Support"
                 align="right"
                 visual={<VisualDisputes />}
+                headerContent={
+                    <div className="flex items-center gap-2">
+                        <span className="font-bold text-gray-600 text-[10px]">CASE #8291</span>
+                        <span className="text-green-700 bg-green-100 px-1.5 py-0.5 rounded text-[9px] font-bold border border-green-200">AUTO-RESOLVED</span>
+                    </div>
+                }
             >
                 <p>
                     We automated <strong>71% of dispute resolutions</strong> for a telecommunications provider handling 35,000 customer cases per month. Average resolution time dropped from six days to eight hours.
