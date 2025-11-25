@@ -1,6 +1,6 @@
 import React from 'react';
 import Section from '../components/Section';
-import { VisualNetwork, VisualWave, VisualWeapon } from '../components/SectionVisuals';
+import { VisualNetwork, VisualWave, VisualBurden } from '../components/SectionVisuals';
 import UseCases from '../components/UseCases';
 import LandingLayout from '../layouts/LandingLayout';
 
@@ -40,7 +40,7 @@ const LandingA = () => {
             <Section 
               title="Your Knowledge is Your Weapon" 
               align="right"
-              visual={<VisualWeapon />}
+              visual={<VisualBurden step={3} />}
             >
               <p>
                 Your company's historical data and proprietary knowledge are a treasure trove—if you can access it. Whatever you structure right now starts creating a permanent record that no competitor can catch up to.

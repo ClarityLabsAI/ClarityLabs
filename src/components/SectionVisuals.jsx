@@ -4,15 +4,14 @@ import { motion } from 'framer-motion';
 import { AlertCircle, Database, FileSpreadsheet, FileText, Mail, Mic } from 'lucide-react';
 
 // --- Shared Container (No Window Chrome) ---
-const SimpleContainer = ({ children }) => (
-    <div className="relative w-full h-full rounded-xl border border-white/10 bg-black/40 bg-gradient-to-br from-white/5 to-transparent aspect-video overflow-hidden shadow-2xl backdrop-blur-sm">
-        {/* Content */}
-        <div className="w-full h-full relative">
-            {children}
-        </div>
+const SimpleContainer = ({ children, transparent = false }) => (
+  <div className={`relative w-full h-full aspect-[2/1] overflow-hidden ${transparent ? '' : 'lg:rounded-xl lg:border lg:border-white/10 lg:bg-black/40 lg:bg-gradient-to-br lg:from-white/5 lg:to-transparent lg:shadow-2xl lg:backdrop-blur-sm'}`}>
+    {/* Content */}
+    <div className="w-full h-full relative">
+        {children}
     </div>
+  </div>
 );
-
 // --- Landing A Visuals (Static) ---
 
 export const VisualWave = () => (
@@ -27,20 +26,14 @@ export const VisualWave = () => (
                 </div>
             </div>
 
-            {/* Graph Lines */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none p-8 overflow-visible">
-                {/* Competitors Line (Linear/Low) */}
-                <path
-                    d="M 0 300 L 300 250"
-                    fill="none" stroke="#666" strokeWidth="2" strokeDasharray="4 4"
-                />
-                {/* "You" Line (Exponential) */}
-                <path
-                    d="M 0 300 Q 200 300 350 50"
-                    fill="none" stroke="#FACC15" strokeWidth="4"
-                />
-            </svg>
-
+                        {/* Graph Lines */}
+                        <svg className="absolute inset-0 w-full h-full pointer-events-none p-8 overflow-visible">
+                            {/* "You" Line (Exponential) */}
+                            <path 
+                                d="M 0 300 Q 200 300 350 50" 
+                                fill="none" stroke="#FACC15" strokeWidth="4"
+                            />
+                        </svg>
             {/* Labels */}
             <div className="absolute top-1/4 right-12 bg-brand-gold/20 border border-brand-gold px-3 py-1 rounded text-brand-gold text-xs font-bold">
                 AI ADOPTION
@@ -135,7 +128,7 @@ export const VisualNetwork = () => (
 
 // --- Landing B Visuals (Static) ---
 
-export const VisualBurden = ({ step = 1 }) => {
+export const VisualBurden = ({ step = 1, transparent = false }) => {
     // Configuration for the 7 windows
     const windows = [
         {
@@ -291,12 +284,11 @@ export const VisualBurden = ({ step = 1 }) => {
             zIndex: 10,
             right: "auto" // Clear any right props
         };
-    };
-
-    return (
-        <SimpleContainer>
-            <div className="w-full h-full relative overflow-hidden p-4 bg-gray-900/50 transition-all duration-1000">
-
+        };
+    
+        return (
+        <SimpleContainer transparent={transparent}>
+            <div className="w-full h-full relative overflow-hidden p-4 transition-all duration-1000">
                 {/* --- CONNECTIONS (Step 2 & 3) --- */}
                 <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
                     {/* Step 2: Yellow lines from Bottom Grid to Master Data */}
