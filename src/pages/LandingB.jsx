@@ -93,7 +93,7 @@ const LandingB = () => {
               {/* Right Column: Sticky Visual */}
               <div className="relative hidden lg:block">
                   <div className="sticky top-0 h-screen flex items-center justify-center py-24">
-                      <div className="w-full h-[500px]">
+                      <div className="w-full h-[400px]">
                           <VisualBurden step={activeStep} />
                       </div>
                   </div>
