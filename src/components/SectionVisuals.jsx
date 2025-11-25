@@ -31,7 +31,7 @@ export const VisualWave = () => (
                             {/* "You" Line (Exponential) */}
                             <path 
                                 d="M 0 300 Q 200 300 350 50" 
-                                fill="none" stroke="#FACC15" strokeWidth="4"
+                                fill="none" stroke="#E9A319" strokeWidth="4"
                             />
                         </svg>
             {/* Labels */}
@@ -92,8 +92,8 @@ export const VisualNetwork = () => (
     <SimpleContainer>
         <div className="w-full h-full flex items-center justify-center relative">
             {/* Network Lines */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                <g stroke="#FACC15" strokeWidth="1" strokeOpacity="0.3">
+             <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                <g stroke="#E9A319" strokeWidth="1" strokeOpacity="0.3">
                     <line x1="200" y1="150" x2="100" y2="100" />
                     <line x1="200" y1="150" x2="300" y2="100" />
                     <line x1="200" y1="150" x2="100" y2="200" />
@@ -409,7 +409,7 @@ export const VisualAtlas = () => (
 
                 {/* Core */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-4 h-4 bg-brand-gold rounded-full shadow-[0_0_20px_#FACC15]"></div>
+                    <div className="w-4 h-4 bg-brand-gold rounded-full shadow-[0_0_20px_#E9A319]"></div>
                 </div>
 
                 {/* Floating Data Points */}
