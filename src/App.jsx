@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/a" element={<LandingA />} />
         <Route path="/b" element={<LandingB />} />
-        <Route path="/" element={<Navigate to="/a" replace />} />
+        <Route path="/" element={<LandingB />} />
       </Routes>
     </Router>
   );
