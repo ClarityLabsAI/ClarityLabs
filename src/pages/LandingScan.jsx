@@ -130,15 +130,15 @@ const LandingScan = () => {
         <p>
           Structured knowledge becomes a living dashboard: a traceable map of what actually slows decisions, burns margin, or introduces risk.
         </p>
-        <h4 className="text-white font-bold text-sm mb-1">What we&apos;ve uncovered:</h4>
+        <h4 className="text-white font-bold text-sm mb-1">What this 48-hour scan uncovered:</h4>
         <ul className="space-y-4 mt-4">
           <li className="border-l-2 border-brand-gold/50 pl-4">
-            <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">our official processes aren&apos;t your real processes.</h4>
-            <p className="text-sm text-gray-400 mt-1">At one client, we found that 68% of purchase validations bypassed the formal approval chain via direct messages.</p>
+            <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">Your official processes aren&apos;t your real processes.</h4>
+            <p className="text-sm text-gray-400 mt-1">At one client, 68% of purchase validations bypassed the formal approval chain via direct messages.</p>
           </li>
           <li className="border-l-2 border-brand-gold/50 pl-4">
             <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">Your critical knowledge lives in 3 inboxes.</h4>
-            <p className="text-sm text-gray-400">At another, key client relationships depended entirely on informal exchanges by employees with no backup or handover documentation.</p>
+            <p className="text-sm text-gray-400">Key client relationships depended entirely on informal exchanges by employees with no backup or handover documentation.</p>
           </li>
           <li className="border-l-2 border-brand-gold/50 pl-4">
             <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">You&apos;re paying for invisible bottlenecks.</h4>
