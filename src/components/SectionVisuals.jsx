@@ -4,8 +4,8 @@ import { AlertCircle, Database, FileSpreadsheet, FileText, Mail, Mic, PlayCircle
 import { BRAND_GOLD as GOLD } from '../constants/theme';
 
 // --- Shared Container (No Window Chrome) ---
-const SimpleContainer = ({ children, transparent = false }) => (
-    <div className={`relative w-full h-full aspect-[2/1] overflow-hidden ${transparent ? '' : 'lg:rounded-xl lg:border lg:border-white/10 lg:bg-black/40 lg:bg-gradient-to-br lg:from-white/5 lg:to-transparent lg:shadow-2xl lg:backdrop-blur-sm'}`}>
+const SimpleContainer = ({ children, transparent = false, aspectClass = "aspect-[2/1]" }) => (
+    <div className={`relative w-full h-full ${aspectClass} overflow-hidden ${transparent ? '' : 'lg:rounded-xl lg:border lg:border-white/10 lg:bg-black/40 lg:bg-gradient-to-br lg:from-white/5 lg:to-transparent lg:shadow-2xl lg:backdrop-blur-sm'}`}>
         {/* Content */}
         <div className="w-full h-full relative">
             {children}
@@ -294,7 +294,7 @@ export const VisualBurden = ({ step = 1, transparent = false }) => {
 
                 {/* --- CONNECTIONS (Step 2 & 3) --- */}
                 <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-0" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    {/* Step 2: Yellow lines from Bottom Grid to Master Data */}
+                    {/* Step 2 connections */}
                     {step >= 2 && windows.map((_, i) => {
                         const slotWidth = 12.8;
                         const leftPos = 5 + (i * slotWidth) + (slotWidth / 2);
@@ -316,7 +316,7 @@ export const VisualBurden = ({ step = 1, transparent = false }) => {
                         );
                     })}
 
-                    {/* Step 3: Gray lines from Master Data to Top Use Cases */}
+                    {/* Step 3 connections */}
                     {step >= 3 && [20, 40, 60, 80].map((x, i) => (
                         <motion.path
                             key={`gray-${i}`}
@@ -342,8 +342,7 @@ export const VisualBurden = ({ step = 1, transparent = false }) => {
                 </motion.div>
 
                 {/* --- USE CASES (Step 3+) --- */}
-                <div className="absolute top-4 left-0 right-0 flex justify-center gap-4 z-20 w-full px-8 pointer-events-none"> {/* Raised to top-4 */}
-                    {/* Distribute these evenly to match the gray lines targets (20%, 40%, 60%, 80%) */}
+                <div className="absolute top-4 left-0 right-0 flex justify-center gap-4 z-20 w-full px-8 pointer-events-none">
                     {["Compliance", "Support", "Verifier", "..."].map((label, i) => (
                         <motion.div
                             key={i}
@@ -486,12 +485,12 @@ export const VisualInsights = () => {
     };
 
     return (
-        <SimpleContainer>
+        <SimpleContainer aspectClass="aspect-auto sm:aspect-[2/1]">
             <div className="w-full h-full relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/15 via-black/60 to-brand-gold/5 pointer-events-none" />
 
                 <svg 
-                    className="absolute inset-0 w-full h-full pointer-events-none" 
+                    className="absolute inset-0 w-full h-full pointer-events-none hidden sm:block" 
                     viewBox="0 0 100 100" 
                     preserveAspectRatio="none"
                     style={{ zIndex: 5 }}
@@ -533,8 +532,8 @@ export const VisualInsights = () => {
                     })}
                 </svg>
 
-                <div className="relative w-full h-full px-4 py-4 flex flex-col justify-between z-10">
-                    <div className="flex justify-center gap-2">
+                <div className="relative w-full h-full px-4 py-6 flex flex-col justify-between gap-4 sm:gap-0 sm:py-4 z-10">
+                    <div className="flex justify-center gap-2 flex-wrap sm:flex-nowrap">
                         {sources.map((src, i) => (
                             <motion.div
                                 key={src.label}
@@ -551,6 +550,11 @@ export const VisualInsights = () => {
                                 </div>
                             </motion.div>
                         ))}
+                    </div>
+
+                    {/* Mobile: sources -> knowledge */}
+                    <div className="flex justify-center sm:hidden">
+                        <div className="w-px h-6 bg-gradient-to-b from-white/20 to-brand-gold/60"></div>
                     </div>
 
                     <div className="flex justify-center z-20">
@@ -571,14 +575,19 @@ export const VisualInsights = () => {
                         </motion.div>
                     </div>
 
-                    <div className="flex justify-center gap-2">
+                    {/* Mobile: knowledge -> insights */}
+                    <div className="flex justify-center sm:hidden">
+                        <div className="w-px h-6 bg-gradient-to-b from-brand-gold/60 to-white/20"></div>
+                    </div>
+
+                    <div className="flex justify-center gap-2 flex-wrap sm:flex-nowrap">
                         {insightCards.map((card, idx) => (
                             <motion.div
                                 key={card.title}
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="border border-white/10 rounded-lg bg-white/5 px-3 py-2 shadow-xl backdrop-blur-sm flex-1 max-w-[160px]"
+                                className="border border-white/10 rounded-lg bg-white/5 px-3 py-2 shadow-xl backdrop-blur-sm flex-1 min-w-[140px] max-w-[160px]"
                             >
                                 <div className="flex items-center justify-between text-xs text-white">
                                     <span className="font-semibold leading-tight">{card.title}</span>
@@ -627,9 +636,9 @@ export const VisualScanTimeline = () => {
     ];
 
     return (
-        <SimpleContainer>
+        <SimpleContainer aspectClass="aspect-auto sm:aspect-[2/1]">
             <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/10 via-black/70 to-brand-gold/5" />
-            <div className="relative w-full px-8 pt-12 flex flex-col justify-between">
+            <div className="relative w-full px-8 py-6 sm:pt-12 sm:pb-0 flex flex-col justify-between">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     {phases.map((phase, i) => (
                         <motion.div
@@ -649,7 +658,7 @@ export const VisualScanTimeline = () => {
                     ))}
                 </div>
 
-                <div className="mt-6 relative">
+                <div className="mt-6 relative hidden sm:block">
                     <div className="h-1 bg-white/10 rounded-full overflow-hidden">
                         <motion.div
                             className="h-full bg-gradient-to-r from-brand-gold via-brand-gold-light to-white"

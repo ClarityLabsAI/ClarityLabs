@@ -14,10 +14,7 @@ const Section = ({ title, children, visual, align = 'left', titleClassName = '' 
                 </h3>
             )}
             
-            {/* Visual Container (Mobile Transparent) */}
-            <div className="w-full h-[300px]">
-                {/* We assume visual handles its own container styling/transparency if needed, 
-                    but SectionVisuals SimpleContainer defaults to transparent on mobile now. */}
+            <div className="w-full">
                 {visual ? visual : <div className="text-brand-gold/30 font-mono text-sm">[VISUAL]</div>}
             </div>
 
