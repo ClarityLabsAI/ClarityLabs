@@ -600,9 +600,9 @@ export const VisualInsights = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6 }}
-                            className={`relative w-[72%] max-w-[280px] border-2 border-brand-gold bg-black rounded-xl px-6 py-4 text-center shadow-[0_0_25px_${GOLD}]`}
+                            className={`relative w-[72%] min-w-[120px] border-2 border-brand-gold bg-black rounded-xl px-3 py-4 text-center shadow-[0_0_25px_${GOLD}]`}
                         >
-                            <div className="text-[11px] text-brand-gold tracking-[0.25em] font-bold">STRUCTURED KNOWLEDGE</div>
+                            <div className="text-[11px] text-brand-gold font-bold">STRUCTURED KNOWLEDGE</div>
                             <p className="text-sm text-gray-200 mt-1">Entity graph + reconciled workflows</p>
 
                             <motion.div
