@@ -107,36 +107,20 @@ const LandingScan = () => {
         align="right"
         visual={<VisualScanTimeline />}
       >
-        <ul className="space-y-5">
-          <li className="flex items-start gap-4">
-            <span className="w-3 h-3 rounded-full bg-brand-gold mt-2"></span>
-            <div>
-              <div className="text-xl font-semibold text-white">A complete diagnostic scanner of your company</div>
-              <p className="text-gray-400 text-base mt-1">We surface how work truly moves across teams, tools, and geographies—no surveys or workshops.</p>
-            </div>
-          </li>
-          <li className="flex items-start gap-4">
-            <span className="w-3 h-3 rounded-full bg-brand-gold mt-2"></span>
-            <div>
-              <div className="text-xl font-semibold text-white">Direct plugs into every data source</div>
-              <p className="text-gray-400 text-base mt-1">Mailboxes, document drives, ERPs, ticketing, and chat are ingested for unmatched granularity of insight.</p>
-            </div>
-          </li>
-          <li className="flex items-start gap-4">
-            <span className="w-3 h-3 rounded-full bg-brand-gold mt-2"></span>
-            <div>
-              <div className="text-xl font-semibold text-white">Examples of insights we surface</div>
-              <p className="text-gray-400 text-base mt-1">Margin leakage in order-to-cash, supplier SLA drift, reconciliation bottlenecks, and shadow processes bypassing controls.</p>
-            </div>
-          </li>
-          <li className="flex items-start gap-4">
-            <span className="w-3 h-3 rounded-full bg-brand-gold mt-2"></span>
-            <div>
-              <div className="text-xl font-semibold text-white">One hour with IT, 48 hours to delivery</div>
-              <p className="text-gray-400 text-base mt-1">Connect once, then receive the full diagnostic report and dashboard two days later—no heavy lift from your teams.</p>
-            </div>
-          </li>
-        </ul>
+        <div className="space-y-4">
+          <div className="border-l-2 border-brand-gold/50 pl-4">
+            <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">A complete diagnostic scanner of your company</h4>
+            <p className="text-sm text-gray-400">We surface how work truly moves across teams, tools, and geographies—no surveys or workshops.</p>
+          </div>
+          <div className="border-l-2 border-brand-gold/50 pl-4">
+            <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">Direct plugs into every data source</h4>
+            <p className="text-sm text-gray-400">Mailboxes, document drives, ERPs, ticketing, and chat are ingested for unmatched granularity of insight.</p>
+          </div>
+          <div className="border-l-2 border-brand-gold/50 pl-4">
+            <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">One hour with IT, 48 hours to delivery</h4>
+            <p className="text-sm text-gray-400">Connect once, then receive the full diagnostic report and dashboard two days later—no heavy lift from your teams.</p>
+          </div>
+        </div>
       </Section>
 
       <Section
