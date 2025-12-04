@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
-// motion imported but unused for animations now, kept if needed for basic fade-ins later
 import { motion } from 'framer-motion';
 import { AlertCircle, Database, FileSpreadsheet, FileText, Mail, Mic, PlayCircle, Timer } from 'lucide-react';
 import { BRAND_GOLD as GOLD } from '../constants/theme';
@@ -451,10 +450,10 @@ export const VisualAutomation = () => (
 
 export const VisualInsights = () => {
     const sources = [
-        { label: "Mail threads", icon: <Mail size={16} />, bg: "from-blue-500/30 to-blue-300/10" },
-        { label: "Supplier PDFs", icon: <FileText size={16} />, bg: "from-amber-500/30 to-amber-300/10" },
+        { label: "Mail\nthreads", icon: <Mail size={16} />, bg: "from-blue-500/30 to-blue-300/10" },
+        { label: "Supplier\nPDFs", icon: <FileText size={16} />, bg: "from-amber-500/30 to-amber-300/10" },
         { label: "Legacy DB", icon: <Database size={16} />, bg: "from-emerald-500/30 to-emerald-300/10" },
-        { label: "Voice notes", icon: <Mic size={16} />, bg: "from-purple-500/30 to-purple-300/10" },
+        { label: "Voice\nnotes", icon: <Mic size={16} />, bg: "from-purple-500/30 to-purple-300/10" },
     ];
 
     const insightCards = [
@@ -475,135 +474,94 @@ export const VisualInsights = () => {
         },
     ];
 
-    const barSequence = (value) => {
-        const low = Math.max(value - 10, 10);
-        const high = Math.min(value + 8, 100);
-        return [`${low}%`, `${value}%`, `${high}%`, `${value}%`];
+    const sourcePositions = [22, 38, 62, 78];
+    const cardPositions = [20, 50, 80];
+    const coreY = { top: 34, bottom: 54 };
+    const sourceBottomY = 16;
+    const cardTopY = 74;
+
+    const buildCurve = (x1, y1, x2, y2) => {
+        const midY = (y1 + y2) / 2;
+        return `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
     };
-
-    const containerRef = useRef(null);
-    const coreRef = useRef(null);
-    const sourceRefs = useRef([]);
-    const cardRefs = useRef([]);
-    const [connections, setConnections] = useState({ left: [], right: [] });
-
-    const buildCurve = (start, end) => {
-        const dx = (end.x - start.x) * 0.45;
-        return `M ${start.x} ${start.y} C ${start.x + dx} ${start.y}, ${end.x - dx} ${end.y}, ${end.x} ${end.y}`;
-    };
-
-    useLayoutEffect(() => {
-        let rafId = null;
-
-        const measure = () => {
-            if (!containerRef.current || !coreRef.current) return;
-            if (sourceRefs.current.some((el) => !el) || cardRefs.current.some((el) => !el)) return;
-
-            const containerRect = containerRef.current.getBoundingClientRect();
-            const coreRect = coreRef.current.getBoundingClientRect();
-
-            const mapStartEnd = (el, side) => {
-                if (!el) return null;
-                const rect = el.getBoundingClientRect();
-                const start = {
-                    x: side === "left" ? rect.right - containerRect.left : rect.left - containerRect.left,
-                    y: rect.top - containerRect.top + rect.height / 2
-                };
-                const end = {
-                    x: side === "left" ? coreRect.left - containerRect.left : coreRect.right - containerRect.left,
-                    y: coreRect.top - containerRect.top + coreRect.height / 2
-                };
-                return { start, end };
-            };
-
-            const left = sourceRefs.current.map((el) => mapStartEnd(el, "left")).filter(Boolean);
-            const right = cardRefs.current.map((el) => mapStartEnd(el, "right")).filter(Boolean);
-            setConnections({ left, right });
-        };
-
-        const schedule = () => {
-            if (rafId) cancelAnimationFrame(rafId);
-            rafId = requestAnimationFrame(() => {
-                requestAnimationFrame(measure);
-            });
-        };
-
-        // initial and resize triggers
-        schedule();
-        const onResize = () => schedule();
-        window.addEventListener('resize', onResize);
-
-        return () => {
-            window.removeEventListener('resize', onResize);
-            if (rafId) cancelAnimationFrame(rafId);
-        };
-    }, []);
 
     return (
         <SimpleContainer>
-            <div ref={containerRef} className="w-full h-full relative">
+            <div className="w-full h-full relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/15 via-black/60 to-brand-gold/5 pointer-events-none" />
 
-                {/* SVG Arrows */}
-                <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 10 }}>
-                    {connections.left.map((conn, i) => (
-                        <path
-                            key={`left-${i}`}
-                            d={buildCurve(conn.start, conn.end)}
-                            fill="none"
-                            stroke={GOLD}
-                            strokeWidth="2.2"
-                            strokeOpacity="0.7"
-                            strokeLinecap="round"
-                        />
-                    ))}
+                <svg 
+                    className="absolute inset-0 w-full h-full pointer-events-none" 
+                    viewBox="0 0 100 100" 
+                    preserveAspectRatio="none"
+                    style={{ zIndex: 5 }}
+                >
+                    {sourcePositions.map((srcX, i) => {
+                        const endX = 50 + (i - 1.5) * 12;
+                        return (
+                            <motion.path
+                                key={`top-${i}`}
+                                d={buildCurve(srcX, sourceBottomY, endX, coreY.top)}
+                                fill="none"
+                                stroke={GOLD}
+                                strokeWidth="0.5"
+                                strokeOpacity="0.8"
+                                strokeLinecap="round"
+                                initial={{ pathLength: 0, opacity: 0 }}
+                                whileInView={{ pathLength: 1, opacity: 1 }}
+                                transition={{ duration: 0.6, delay: i * 0.1 }}
+                            />
+                        );
+                    })}
 
-                    {connections.right.map((conn, i) => (
-                        <path
-                            key={`right-${i}`}
-                            d={buildCurve(conn.start, conn.end)}
-                            fill="none"
-                            stroke={GOLD}
-                            strokeWidth="2.4"
-                            strokeOpacity="0.8"
-                            strokeLinecap="round"
-                        />
-                    ))}
+                    {cardPositions.map((cardX, i) => {
+                        const startX = 50 + (i - 1) * 10;
+                        return (
+                            <motion.path
+                                key={`bottom-${i}`}
+                                d={buildCurve(startX, coreY.bottom, cardX, cardTopY)}
+                                fill="none"
+                                stroke={GOLD}
+                                strokeWidth="0.5"
+                                strokeOpacity="0.8"
+                                strokeLinecap="round"
+                                initial={{ pathLength: 0, opacity: 0 }}
+                                whileInView={{ pathLength: 1, opacity: 1 }}
+                                transition={{ duration: 0.6, delay: i * 0.1 }}
+                            />
+                        );
+                    })}
                 </svg>
 
-                <div className="relative w-full h-full px-6 py-5 flex items-center justify-between gap-4">
-                    {/* Inputs */}
-                    <div className="w-1/4 min-w-[140px] flex flex-col gap-3">
+                <div className="relative w-full h-full px-4 py-4 flex flex-col justify-between z-10">
+                    <div className="flex justify-center gap-2">
                         {sources.map((src, i) => (
                             <motion.div
                                 key={src.label}
-                                ref={(el) => { sourceRefs.current[i] = el; }}
-                                initial={{ opacity: 0, x: -15 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: i * 0.1 + 0.2 }}
-                                className={`border border-white/10 rounded-lg px-3 py-2 bg-gradient-to-r ${src.bg} text-sm text-gray-100 shadow-lg`}
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.1 }}
+                                className={`border border-white/10 rounded-lg px-2 py-1.5 bg-gradient-to-b ${src.bg} text-sm text-gray-100 shadow-lg`}
                             >
-                                <div className="flex items-center gap-2">
-                                    <div className={`w-8 h-8 rounded-md bg-gradient-to-br ${src.bg} flex items-center justify-center text-white/80`}>
+                                <div className="flex items-center gap-1.5">
+                                    <div className={`w-6 h-6 rounded-md bg-gradient-to-br ${src.bg} flex items-center justify-center text-white/80`}>
                                         {src.icon}
                                     </div>
-                                    <span className="font-mono text-xs text-gray-300">{src.label}</span>
+                                    <span className="font-mono text-[10px] text-gray-300 whitespace-pre-line leading-tight">{src.label}</span>
                                 </div>
                             </motion.div>
                         ))}
                     </div>
 
-                    {/* Structured Knowledge Core */}
-                    <div className="relative flex-1 flex items-center justify-center">
-                        <motion.div
-                            ref={coreRef}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6 }}
-                            className={`relative w-[72%] min-w-[120px] border-2 border-brand-gold bg-black rounded-xl px-3 py-4 text-center shadow-[0_0_25px_${GOLD}]`}
+                    <div className="flex justify-center z-20">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className={`relative border-2 border-brand-gold bg-black rounded-xl px-4 py-3 text-center shadow-[0_0_25px_${GOLD}]`}
                         >
-                            <div className="text-[11px] text-brand-gold font-bold">STRUCTURED KNOWLEDGE</div>
-                            <p className="text-sm text-gray-200 mt-1">Entity graph + reconciled workflows</p>
+                            <div className="text-[10px] text-brand-gold font-bold tracking-wider">STRUCTURED KNOWLEDGE</div>
+                            <p className="text-xs text-gray-200 mt-1">Entity graph + reconciled workflows</p>
 
                             <motion.div
                                 className="absolute inset-1 border border-brand-gold/30 rounded-xl"
@@ -613,34 +571,30 @@ export const VisualInsights = () => {
                         </motion.div>
                     </div>
 
-                    {/* Insights / Dashboard */}
-                    <div className="w-1/3 min-w-[200px] flex flex-col gap-3">
+                    <div className="flex justify-center gap-2">
                         {insightCards.map((card, idx) => (
                             <motion.div
                                 key={card.title}
-                                ref={(el) => { cardRefs.current[idx] = el; }}
                                 initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4 + idx * 0.15 }}
-                                className="border border-white/10 rounded-xl bg-white/5 px-4 py-3 shadow-xl backdrop-blur-sm"
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="border border-white/10 rounded-lg bg-white/5 px-3 py-2 shadow-xl backdrop-blur-sm flex-1 max-w-[160px]"
                             >
-                                <div className="flex items-center justify-between text-sm text-white">
-                                    <span className="font-semibold">{card.title}</span>
-                                    <span className="text-[10px] text-gray-400 uppercase tracking-[0.2em]">Live</span>
+                                <div className="flex items-center justify-between text-xs text-white">
+                                    <span className="font-semibold leading-tight">{card.title}</span>
+                                    <span className="text-[8px] text-gray-400 uppercase tracking-wider ml-1">Live</span>
                                 </div>
-                                <div className="space-y-2 mt-2">
+                                <div className="mt-1.5">
                                     {card.bars.map((value, i) => (
-                                        <div key={i} className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
-                                            <motion.div
+                                        <div key={i} className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                                            <div
                                                 className="h-full bg-gradient-to-r from-brand-gold to-white"
-                                                initial={{ width: "0%" }}
-                                                animate={{ width: barSequence(value) }}
-                                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 + i * 0.1 }}
+                                                style={{ width: `${value}%` }}
                                             />
                                         </div>
                                     ))}
                                 </div>
-                                <p className="text-[11px] text-gray-400 mt-2 leading-snug">{card.caption}</p>
+                                <p className="text-[9px] text-gray-400 mt-1.5 leading-snug">{card.caption}</p>
                             </motion.div>
                         ))}
                     </div>
