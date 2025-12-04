@@ -110,7 +110,7 @@ const LandingScan = () => {
         <div className="space-y-4">
           <div className="border-l-2 border-brand-gold/50 pl-4">
             <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">A complete diagnostic scanner of your company</h4>
-            <p className="text-sm text-gray-400">We surface how work truly moves across teams, tools, and geographies—no surveys or workshops.</p>
+            <p className="text-sm text-gray-400">We surface how work truly moves across teams, tools, and geographies, without surveys or workshops.</p>
           </div>
           <div className="border-l-2 border-brand-gold/50 pl-4">
             <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">Direct plugs into every data source</h4>
@@ -118,7 +118,7 @@ const LandingScan = () => {
           </div>
           <div className="border-l-2 border-brand-gold/50 pl-4">
             <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">One hour with IT, 48 hours to delivery</h4>
-            <p className="text-sm text-gray-400">Connect once, then receive the full diagnostic report and dashboard two days later—no heavy lift from your teams.</p>
+            <p className="text-sm text-gray-400">Connect once, then receive the full diagnostic report and dashboard two days later. No heavy lift from your teams.</p>
           </div>
         </div>
       </Section>
@@ -130,19 +130,19 @@ const LandingScan = () => {
         <p>
           Structured knowledge becomes a living dashboard: a traceable map of what actually slows decisions, burns margin, or introduces risk.
         </p>
-        <h4 className="text-white font-bold text-sm mb-1">What this 48-hour scan uncovered:</h4>
+        <h4 className="text-white font-bold text-sm mb-1">What this 48-hour scan already uncovered:</h4>
         <ul className="space-y-4 mt-4">
           <li className="border-l-2 border-brand-gold/50 pl-4">
             <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">Your official processes aren&apos;t your real processes.</h4>
             <p className="text-sm text-gray-400 mt-1">At one client, 68% of purchase validations bypassed the formal approval chain via direct messages.</p>
           </li>
           <li className="border-l-2 border-brand-gold/50 pl-4">
-            <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">Your critical knowledge lives in 3 inboxes.</h4>
-            <p className="text-sm text-gray-400">Key client relationships depended entirely on informal exchanges by employees with no backup or handover documentation.</p>
-          </li>
-          <li className="border-l-2 border-brand-gold/50 pl-4">
             <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">You&apos;re paying for invisible bottlenecks.</h4>
             <p className="text-sm text-gray-400">We measured 11 days of wait time hidden inside a 14-day contract review cycle — only 3 days of actual work.</p>
+          </li>
+          <li className="border-l-2 border-brand-gold/50 pl-4">
+            <h4 className="text-white font-bold text-sm tracking-widest uppercase mb-1">Your critical knowledge lives in 3 inboxes.</h4>
+            <p className="text-sm text-gray-400">Key client relationships depended entirely on informal exchanges by employees with no backup or handover documentation.</p>
           </li>
         </ul>
       </Section>
