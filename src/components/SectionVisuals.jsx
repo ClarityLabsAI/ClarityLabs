@@ -1,7 +1,7 @@
 import React from 'react';
 // motion imported but unused for animations now, kept if needed for basic fade-ins later
 import { motion } from 'framer-motion';
-import { AlertCircle, Database, FileSpreadsheet, FileText, Mail, Mic } from 'lucide-react';
+import { AlertCircle, Database, FileSpreadsheet, FileText, Mail, Mic, Timer } from 'lucide-react';
 import { BRAND_GOLD as GOLD } from '../constants/theme';
 
 // --- Shared Container (No Window Chrome) ---
@@ -448,3 +448,212 @@ export const VisualAutomation = () => (
         </div>
     </SimpleContainer>
 );
+
+export const VisualInsights = () => {
+    const sources = [
+        { label: "Mail threads", icon: <Mail size={16} />, bg: "from-blue-500/30 to-blue-300/10" },
+        { label: "Supplier PDFs", icon: <FileText size={16} />, bg: "from-amber-500/30 to-amber-300/10" },
+        { label: "Legacy DB", icon: <Database size={16} />, bg: "from-emerald-500/30 to-emerald-300/10" },
+        { label: "Voice notes", icon: <Mic size={16} />, bg: "from-purple-500/30 to-purple-300/10" },
+    ];
+
+    const insightCards = [
+        {
+            title: "Operations dashboard",
+            bars: [78, 62, 90],
+            caption: "Cycle time, manual touches, and queue aging by process."
+        },
+        {
+            title: "Margin protection",
+            bars: [68, 52, 84],
+            caption: "Leakage from rework loops, SLA penalties, and overrides."
+        },
+        {
+            title: "Risk radar",
+            bars: [74, 58, 66],
+            caption: "Policy exceptions grouped by team, vendor, and process."
+        },
+    ];
+
+    const barSequence = (value) => {
+        const low = Math.max(value - 10, 10);
+        const high = Math.min(value + 8, 100);
+        return [`${low}%`, `${value}%`, `${high}%`, `${value}%`];
+    };
+
+    return (
+        <SimpleContainer>
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/15 via-black/60 to-brand-gold/5" />
+
+            {/* Flow Lines */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100">
+                {[
+                    { x1: 18, y1: 25, x2: 48, y2: 45 },
+                    { x1: 18, y1: 50, x2: 48, y2: 50 },
+                    { x1: 18, y1: 75, x2: 48, y2: 55 },
+                    { x1: 54, y1: 48, x2: 82, y2: 30 },
+                    { x1: 54, y1: 52, x2: 82, y2: 55 },
+                    { x1: 54, y1: 56, x2: 82, y2: 75 },
+                ].map((line, i) => (
+                    <motion.line
+                        key={i}
+                        x1={line.x1}
+                        y1={line.y1}
+                        x2={line.x2}
+                        y2={line.y2}
+                        stroke={GOLD}
+                        strokeWidth="0.6"
+                        strokeOpacity="0.35"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.3 + i * 0.1 }}
+                    />
+                ))}
+            </svg>
+
+            <div className="relative w-full h-full px-6 py-5 flex items-center justify-between gap-4">
+                {/* Inputs */}
+                <div className="w-1/4 min-w-[140px] flex flex-col gap-3">
+                    {sources.map((src, i) => (
+                        <motion.div
+                            key={src.label}
+                            initial={{ opacity: 0, x: -15 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.1 + 0.2 }}
+                            className={`border border-white/10 rounded-lg px-3 py-2 bg-gradient-to-r ${src.bg} text-sm text-gray-100 shadow-lg`}
+                        >
+                            <div className="flex items-center gap-2">
+                                <div className={`w-8 h-8 rounded-md bg-gradient-to-br ${src.bg} flex items-center justify-center text-white/80`}>
+                                    {src.icon}
+                                </div>
+                                <span className="font-mono text-xs text-gray-300">{src.label}</span>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* Structured Knowledge Core */}
+                <div className="relative flex-1 flex items-center justify-center">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6 }}
+                        className={`relative w-[72%] max-w-[280px] border-2 border-brand-gold bg-brand-gold/15 rounded-xl px-6 py-4 text-center shadow-[0_0_25px_${GOLD}] backdrop-blur-sm`}
+                    >
+                        <div className="text-[11px] text-brand-gold tracking-[0.25em] font-bold">STRUCTURED KNOWLEDGE</div>
+                        <p className="text-sm text-gray-200 mt-1">Entity graph + reconciled workflows</p>
+                        <p className="text-xs text-gray-400 mt-2">Signals flow into one intelligence core.</p>
+
+                        <motion.div
+                            className="absolute inset-1 border border-brand-gold/30 rounded-xl"
+                            animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.02, 1] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                    </motion.div>
+                </div>
+
+                {/* Insights / Dashboard */}
+                <div className="w-1/3 min-w-[200px] flex flex-col gap-3">
+                    {insightCards.map((card, idx) => (
+                        <motion.div
+                            key={card.title}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 + idx * 0.15 }}
+                            className="border border-white/10 rounded-xl bg-white/5 px-4 py-3 shadow-xl backdrop-blur-sm"
+                        >
+                            <div className="flex items-center justify-between text-sm text-white">
+                                <span className="font-semibold">{card.title}</span>
+                                <span className="text-[10px] text-gray-400 uppercase tracking-[0.2em]">Live</span>
+                            </div>
+                            <div className="space-y-2 mt-2">
+                                {card.bars.map((value, i) => (
+                                    <div key={i} className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+                                        <motion.div
+                                            className="h-full bg-gradient-to-r from-brand-gold to-white"
+                                            initial={{ width: "0%" }}
+                                            animate={{ width: barSequence(value) }}
+                                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 + i * 0.1 }}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                            <p className="text-[11px] text-gray-400 mt-2 leading-snug">{card.caption}</p>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </SimpleContainer>
+    );
+};
+
+export const VisualScanTimeline = () => {
+    const phases = [
+        {
+            title: "Kickoff",
+            time: "1h with IT",
+            detail: "Secure connectors into mail, document stores, ERPs, and tickets."
+        },
+        {
+            title: "AI Scan",
+            time: "0-48h",
+            detail: "Unstructured ingestion, entity linking, anomaly sweeps, and narrative assembly."
+        },
+        {
+            title: "Report",
+            time: "48h delivery",
+            detail: "Executive readout + interactive dashboard of your operations."
+        },
+    ];
+
+    return (
+        <SimpleContainer>
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/10 via-black/70 to-brand-gold/5" />
+            <div className="relative w-full h-full px-8 py-6 flex flex-col justify-between">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {phases.map((phase, i) => (
+                        <motion.div
+                            key={phase.title}
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: i * 0.1 }}
+                            className="border border-white/10 bg-white/5 rounded-lg p-4 shadow-lg backdrop-blur-sm"
+                        >
+                            <div className="flex items-center justify-between">
+                                <div className="text-sm text-brand-gold font-semibold tracking-tight">{phase.title}</div>
+                                <Timer size={16} className="text-gray-400" />
+                            </div>
+                            <div className="text-[10px] text-gray-400 uppercase tracking-[0.2em] mt-1">{phase.time}</div>
+                            <p className="text-sm text-gray-200 mt-2 leading-relaxed">{phase.detail}</p>
+                        </motion.div>
+                    ))}
+                </div>
+
+                <div className="mt-6 relative">
+                    <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                        <motion.div
+                            className="h-full bg-gradient-to-r from-brand-gold via-brand-gold-light to-white"
+                            initial={{ width: "0%" }}
+                            animate={{ width: "100%" }}
+                            transition={{ duration: 1.2, ease: "easeOut" }}
+                        />
+                    </div>
+                    <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 flex justify-between items-center">
+                        {phases.map((phase, i) => (
+                            <motion.div
+                                key={`${phase.title}-dot`}
+                                initial={{ scale: 0.8, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ delay: 0.3 + i * 0.1 }}
+                                className="flex flex-col items-center gap-2"
+                            >
+                                <div className="w-4 h-4 rounded-full border-2 border-brand-gold bg-black shadow-[0_0_10px_rgba(233,163,25,0.6)]" />
+                                <span className="text-[11px] text-gray-400">{phase.time}</span>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </SimpleContainer>
+    );
+};

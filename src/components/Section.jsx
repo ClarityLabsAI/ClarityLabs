@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Section = ({ title, children, visual, align = 'left' }) => {
+const Section = ({ title, children, visual, align = 'left', titleClassName = '' }) => {
   return (
     <div className="flex items-center justify-center px-6 py-16 relative z-10 border-b border-white/10 bg-black">
       <div className="max-w-6xl w-full">
@@ -9,7 +9,7 @@ const Section = ({ title, children, visual, align = 'left' }) => {
         {/* Mobile Layout: Title -> Visual -> Text */}
         <div className="flex flex-col lg:hidden gap-8">
             {title && (
-                <h3 className="text-3xl font-sans font-bold text-brand-gold-light tracking-tight">
+                <h3 className={`text-3xl font-sans font-bold text-brand-gold-light tracking-tight ${titleClassName}`}>
                     {title}
                 </h3>
             )}
@@ -37,7 +37,7 @@ const Section = ({ title, children, visual, align = 'left' }) => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 viewport={{ once: true, margin: "-20%" }}
-                className="text-3xl md:text-4xl font-sans font-bold text-brand-gold-light mb-6 tracking-tight"
+                className={`text-3xl md:text-4xl font-sans font-bold text-brand-gold-light mb-6 tracking-tight ${titleClassName}`}
                 >
                 {title}
                 </motion.h3>
