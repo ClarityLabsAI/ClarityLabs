@@ -493,7 +493,7 @@ export const VisualInsights = () => {
     };
 
     useLayoutEffect(() => {
-        if (!containerRef.current) return;
+        let rafId = null;
 
         const measure = () => {
             if (!containerRef.current || !coreRef.current) return;
@@ -521,21 +521,21 @@ export const VisualInsights = () => {
             setConnections({ left, right });
         };
 
-        const observer = new ResizeObserver(() => measure());
-        observer.observe(containerRef.current);
+        const schedule = () => {
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = requestAnimationFrame(() => {
+                requestAnimationFrame(measure);
+            });
+        };
 
-        const onResize = () => measure();
-        const onLoad = () => measure();
+        // initial and resize triggers
+        schedule();
+        const onResize = () => schedule();
         window.addEventListener('resize', onResize);
-        window.addEventListener('load', onLoad);
-
-        // initial measure after mount
-        measure();
 
         return () => {
-            observer.disconnect();
             window.removeEventListener('resize', onResize);
-            window.removeEventListener('load', onLoad);
+            if (rafId) cancelAnimationFrame(rafId);
         };
     }, []);
 
