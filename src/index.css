@@ -1,4 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
+
+@font-face {
+  font-family: "Alliance No1";
+  src: url("/fonts/Degarism Studio - Alliance No.1 Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alliance No2";
+  src: url("/fonts/Degarism Studio - Alliance No.2 Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
 @import "tailwindcss";
 
 @theme {
@@ -9,7 +25,7 @@
   --color-brand-dark-gray: #0a0a0a;
 
   --font-mono: "JetBrains Mono", monospace;
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "Alliance No1", "Alliance No2", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 :root {
@@ -22,6 +38,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: var(--font-sans);
 }
 
 html {

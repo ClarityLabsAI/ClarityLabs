@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Section = ({ title, children, visual, align = 'left', titleClassName = '' }) => {
   return (
-    <div className="flex items-center justify-center px-6 py-16 relative z-10 border-b border-white/10 bg-black">
+    <div className="flex items-center justify-center px-6 py-20 lg:py-24 relative z-10 border-b border-white/10 bg-black">
       <div className="max-w-6xl w-full">
         
         {/* Mobile Layout: Title -> Visual -> Text */}
