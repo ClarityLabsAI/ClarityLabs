@@ -59,7 +59,7 @@ const ChladniPlate = () => {
             const y = new Float32Array(particleCount);
             const vx = new Float32Array(particleCount);
             const vy = new Float32Array(particleCount);
-            const age = new Float32Array(particleCount);
+            const particleTime = new Float32Array(particleCount); // Renamed from 'age'
             const ampFactor = new Float32Array(particleCount);
             const phaseX = new Float32Array(particleCount); // Independent phase for X offset
             const phaseY = new Float32Array(particleCount); // Independent phase for Y offset
@@ -67,13 +67,13 @@ const ChladniPlate = () => {
             for (let i = 0; i < particleCount; i++) {
                 x[i] = Math.random() * 2 - 1;
                 y[i] = Math.random() * 2 - 1;
-                age[i] = Math.random() * 100;
+                particleTime[i] = Math.random() * 100; // Renamed from 'age'
                 ampFactor[i] = Math.random();
                 phaseX[i] = Math.random() * Math.PI * 2;
                 phaseY[i] = Math.random() * Math.PI * 2;
             }
 
-            particlesRef.current = { x, y, vx, vy, age, ampFactor, phaseX, phaseY };
+            particlesRef.current = { x, y, vx, vy, particleTime, ampFactor, phaseX, phaseY };
         }
 
         const p = particlesRef.current;
@@ -90,7 +90,7 @@ const ChladniPlate = () => {
 
             // Decay Logic
             const timeSinceStart = currentTime - startTime;
-            const startAmp = 15.0;
+            const startAmp = 30.0;
             const minAmp = 0.5; // Reduced final amplitude
             const decayDuration = 5000;
             let currentMaxAmp = startAmp - (startAmp - minAmp) * (timeSinceStart / decayDuration);
@@ -115,7 +115,8 @@ const ChladniPlate = () => {
 
                 const cg = chladniWithGrad(px, py);
 
-                const force = 0.00002;
+                // Delay the ordering effect
+                const force = timeSinceStart < 300 ? 0 : 0.00002;
                 const damping = 0.94;
 
                 p.vx[i] = (p.vx[i] - cg.dx * cg.value * force) * damping;
@@ -124,7 +125,7 @@ const ChladniPlate = () => {
                 p.x[i] = px + p.vx[i];
                 p.y[i] = py + p.vy[i];
 
-                p.age[i] += 0.3;
+                p.particleTime[i] += 0.3; // Renamed from 'age'
 
                 const screenX = centerX + px * scaleX;
                 const screenY = centerY + py * scaleY;
@@ -137,8 +138,8 @@ const ChladniPlate = () => {
                 const offsetY = currentAmp * oscY;
 
                 const absValue = Math.abs(cg.value);
-                const lightness = 50 + Math.sin(p.age[i] * 0.002) * 2;
-                const alpha = 0.65 + Math.sin(p.age[i] * 0.002) * 0.03;
+                const lightness = 50 + Math.sin(p.particleTime[i] * 0.002) * 2; // Renamed from 'age'
+                const alpha = 0.65 + Math.sin(p.particleTime[i] * 0.002) * 0.03; // Renamed from 'age'
 
                 const baseHue = 43; // approx GOLD hue
                 const hue = baseHue + absValue * 4;
