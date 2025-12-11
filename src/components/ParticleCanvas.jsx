@@ -144,7 +144,7 @@ const ChladniPlate = () => {
                 const hue = baseHue + absValue * 4;
                 const saturation = 78 + absValue * 10;
                 ctx.fillStyle = `hsla(${hue}, ${saturation}%, ${lightness}%, ${alpha})`;
-                ctx.fillRect(screenX + offsetX - 0.75, screenY + offsetY - 0.75, 1.5, 1.5);
+                ctx.fillRect(screenX + offsetX - 1, screenY + offsetY - 1, 2, 2);
             }
         };
 
