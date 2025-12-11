@@ -15,7 +15,7 @@ const LandingLayout = ({ title, subtitle, children }) => {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 px-8 md:px-12 lg:px-16">
           <div className="relative max-w-3xl w-full mx-auto space-y-3 md:space-y-4 flex flex-col items-center text-center">
             {/* Smooth Black Glow / Gradient behind text */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[150%] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,1)_0%,rgba(0,0,0,1)_40%,rgba(0,0,0,0)_70%)] -z-10 blur-3xl pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[150%] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,1)_0%,rgba(0,0,0,1)_20%,rgba(0,0,0,0)_70%)] -z-10 blur-3xl pointer-events-none" />
 
             <h1 className="text-4xl md:text-6xl font-bold text-white font-sans leading-[0.95] drop-shadow-2xl shadow-black" style={{ textShadow: "0 4px 12px rgba(0,0,0,0.8)" }}>
               <span className="block">Harness Your Entreprise</span>
